@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Social Room</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const menu = document.getElementById('mobile-menu');
+            const closeBtn = document.getElementById('mobile-menu-close');
+
+            function openMenu() {
+                menu.classList.remove('-translate-x-full');
+            }
+            function closeMenu() {
+                menu.classList.add('-translate-x-full');
+            }
+
+            if (toggle) {
+                toggle.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    openMenu();
+                });
+            }
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    closeMenu();
+                });
+            }
+
+            // Optional: close menu when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!menu.contains(e.target) && e.target !== toggle && !menu.classList.contains('-translate-x-full')) {
+                    closeMenu();
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="bg-gradient-to-b from-[#8fcae8] to-[#ede9e6] font-[Montserrat] overflow-x-hidden">
+    <!-- Start of Navigation -->
+    <nav class="py-4 px-6 sm:px-20 shadow-md fixed w-full bg-[#ede9e6] z-50">
+        <!-- Mobile Nav -->
+        <div class="sm:hidden">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
+                    <img src="img/logo.png" alt="Logo" class="h-12" />
+                    <h1 class="text-2xl font-semibold text-[#ea7701]">Social <span class="text-[#ffb702]">Room</span>
+                    </h1>
+                </a>
+                <!-- Hamburger Icon -->
+                <a href="javascript:void(0);"
+                    class="icon block text-3xl text-blue-700 hover:text-orange-400 focus:outline-none"
+                    id="mobile-menu-toggle" aria-label="Buka menu">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Desktop Nav -->
+        <div class="hidden sm:flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
+                <img src="img/logo.png" alt="Logo" class="h-12" />
+                <h1 class="text-2xl font-semibold text-[#ea7701]">Social <span class="text-[#ffb702]">Room</span></h1>
+            </a>
+            <ul class="flex space-x-8">
+                <li><a href="index.html" class="text-sm font-medium hover:text-[#ea7701]">Beranda</a>
+                </li>
+                <li><a href="video.html" class="text-sm font-medium hover:text-[#ea7701]">Video Interaktif</a></li>
+                <li><a href="materi.html" class="text-sm font-medium text-[#ea7701] hover:text-[#ffb702]">Materi</a>
+                </li>
+                <li><a href="kuis.html" class="text-sm font-medium hover:text-[#ea7701]">Quiz</a></li>
+            </ul>
+            <div class="hidden md:flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                <input type="text" placeholder="Cari Disini" class="outline-none text-sm text-gray-600 w-32" />
+                <svg class="w-5 h-5 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387-1.414 1.414-4.387-4.387zM8 14a6 6 0 100-12 6 6 0 000 12z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+        </div>
+    </nav>
+    <!-- End of Navigation -->
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform -translate-x-full transition-transform duration-300 flex flex-col pt-20">
+        <button id="mobile-menu-close" class="absolute top-4 right-4 text-2xl text-gray-600">&times;</button>
+        <a href="index.html" class="block px-6 py-4 border-b hover:text-orange-500">Beranda</a>
+        <a href="video.html" class="block px-6 py-4 border-b hover:text-orange-500">Video Interaktif</a>
+        <a href="materi.html" class="block px-6 py-4 border-b hover:text-orange-500">Materi</a>
+        <a href="kuis.html" class="block px-6 py-4 hover:text-orange-500">Quiz</a>
+    </div>
+
+    <!-- Intro Materi -->
+    <section class="px-4 sm:px-6 md:px-20 pt-24 mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-[#0055C4] mb-2">
+            Materi Pembelajaran</span>
+            <div class="w-32 h-1 bg-gray-600 mx-auto mt-2"></div>
+        </h2>
+        <p class="text-center text-blue-700 text-lg font-semibold">
+            Yuk, belajar bareng! Semua yang kamu butuh tahu soal Social Awareness ada di sini.
+        </p>
+    </section>
+    <!-- Penjelasan Social Awareness -->
+    <section class="bg-white max-w-6xl mx-auto p-4 sm:p-8 rounded-xl shadow mb-10">
+        <h3 class="text-2xl font-bold text-blue-700 text-center mb-6">Apa itu Social Awareness?</h3>
+        <p class="text-center text-gray-800 mb-8">Social awareness atau kesadaran sosial adalah kemampuan untuk <span
+                class="text-orange-500">memahami, merasakan, dan merespons</span> kondisi, perasaan, serta kebutuhan
+            orang lain dan lingkungan sekitar. Ini bukan sekadar tahu apa yang terjadi, tapi juga peduli dan ikut
+            terlibat secara positif.</p>
+        <div class="text-center">
+            <p class="text-blue-700 font-bold text-lg mb-8">Social Awareness melibatkan:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto">
+                <div
+                    class="bg-orange-50 shadow-lg rounded-xl p-6 flex flex-col items-center hover:shadow-orange-200 transition">
+                    <div
+                        class="bg-orange-400 text-white font-bold text-xl px-4 py-2 rounded-b-full w-20 text-center mb-2">
+                        P</div>
+                    <p class="font-semibold text-orange-500 mt-2">Peduli</p>
+                    <p class="text-sm text-gray-700 text-center">Sikap yang menunjukkan perhatian lingkungan sekitar.
+                    </p>
+                </div>
+                <div
+                    class="bg-blue-50 shadow-lg rounded-xl p-6 flex flex-col items-center hover:shadow-blue-200 transition">
+                    <div
+                        class="bg-orange-400 text-white font-bold text-xl px-4 py-2 rounded-b-full w-20 text-center mb-2">
+                        E</div>
+                    <p class="font-semibold text-orange-500 mt-2">Empati</p>
+                    <p class="text-sm text-gray-700 text-center">Kemampuan merasakan perasaan serta orang lain.</p>
+                </div>
+                <div
+                    class="bg-orange-50 shadow-lg rounded-xl p-6 flex flex-col items-center hover:shadow-orange-200 transition">
+                    <div
+                        class="bg-orange-400 text-white font-bold text-xl px-4 py-2 rounded-b-full w-20 text-center mb-2">
+                        K</div>
+                    <p class="font-semibold text-orange-500 mt-2">Kolaborasi</p>
+                    <p class="text-sm text-gray-700 text-center">Mau bekerja sama dengan berbagai pihak.</p>
+                </div>
+                <div
+                    class="bg-blue-50 shadow-lg rounded-xl p-6 flex flex-col items-center hover:shadow-blue-200 transition">
+                    <div
+                        class="bg-orange-400 text-white font-bold text-xl px-4 py-2 rounded-b-full w-20 text-center mb-2">
+                        A</div>
+                    <p class="font-semibold text-orange-500 mt-2">Aksi Nyata</p>
+                    <p class="text-sm text-gray-700 text-center">Mengubah rasa peduli menjadi tindakan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pentingnya Social Awareness -->
+    <section class="max-w-6xl mx-auto px-2 sm:px-4 mb-12">
+        <h3 class="text-xl font-bold text-blue-700 text-center mb-6">Pentingnya Social Awareness</h3>
+        <p class="text-gray-700 text-center mb-24">Social awareness penting karena membuat kita lebih peduli dan
+            manusiawi.
+            Dengan memahami orang lain, kita bisa menciptakan lingkungan yang adil dan saling mendukung.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl shadow p-4 pt-24 sm:p-6 sm:pt-32 text-center relative overflow-visible">
+                <img src="img/sa1.png" alt=""
+                    class="w-44 sm:w-80 object-contain absolute left-1/2 -top-12 sm:-top-20 -translate-x-1/2 drop-shadow-lg">
+                <div class="mt-4 relative z-10">
+                    <h4 class="font-bold text-orange-500 mb-2">1. Membangun Empati</h4>
+                    <p>Mampu merasakan apa yang orang lain rasakan.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow p-4 pt-24 sm:p-6 sm:pt-32 text-center relative overflow-visible">
+                <img src="img/sa2.png" alt=""
+                    class="w-44 sm:w-80 object-contain absolute left-1/2 -top-12 sm:-top-20 -translate-x-1/2 drop-shadow-lg">
+                <div class="mt-4 relative z-10">
+                    <h4 class="font-bold text-orange-500 mb-2">2. Memperkuat Hubungan Sosial</h4>
+                    <p>Meningkatkan kerja sama, toleransi, dan komunikasi.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow p-4 pt-24 sm:p-6 sm:pt-32 text-center relative overflow-visible">
+                <img src="img/sa3.png" alt=""
+                    class="w-44 sm:w-80 object-contain absolute left-1/2 -top-12 sm:-top-20 -translate-x-1/2 drop-shadow-lg">
+                <div class="mt-4 relative z-10">
+                    <h4 class="font-bold text-orange-500 mb-2">3. Mendorong Aksi Positif</h4>
+                    <p>Menumbuhkan sikap peduli dalam tindakan nyata.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Manfaat -->
+    <section class="bg-white py-10 overflow-x-hidden">
+        <h3 class="text-xl font-bold text-blue-700 text-center mb-6">Manfaat Memiliki Social Awareness</h3>
+        <div class="flex justify-center items-center gap-2 sm:gap-4 max-w-full sm:max-w-5xl mx-auto px-2">
+            <button id="benefit-prev" class="bg-orange-400 text-white p-2 rounded-full">&#8592;</button>
+            <div class="flex-1 flex justify-center overflow-x-auto">
+                <div id="benefit-carousel"
+                    class="flex gap-2 sm:gap-4 px-0 sm:px-6 py-8 text-center text-base sm:text-lg font-bold w-full justify-center transition-transform duration-500">
+                    <!-- Carousel items will be injected here -->
+                </div>
+            </div>
+            <button id="benefit-next" class="bg-orange-400 text-white p-2 rounded-full">&#8594;</button>
+        </div>
+    </section>
+    <script>
+        const benefitItems = [
+            "Menjadi Sosok yang Hangat dan Peka Ke Sekitar",
+            "Memperkuat Relasi Sosial yang Positif terhadap Orang Lain",
+            "Memberikan Makna Lebih dalam Kehidupan",
+            "Membuka Cara Pandang Lebih Luas terhadap Dunia",
+            "Melatih Kecerdasan Emosional dan Kepekaan Sosial",
+            "Mengambil Keputusan Lebih Baik",
+            "Menjadi pribadi yang lebih peduli dan bertanggung jawab"
+        ];
+        let benefitIndex = 0;
+        let animating = false;
+        const benefitCarousel = document.getElementById('benefit-carousel');
+
+        function renderBenefitCarousel(fade = false) {
+            if (animating) return;
+
+            // Prepare next items
+            let items = [];
+            for (let i = 0; i < 3; i++) {
+                const idx = (benefitIndex + i) % benefitItems.length;
+                const div = document.createElement('div');
+                div.className = "min-w-[250px] bg-orange-100 p-6 rounded-xl shadow";
+                div.textContent = benefitItems[idx];
+                items.push(div);
+            }
+
+            if (!fade) {
+                benefitCarousel.innerHTML = '';
+                items.forEach(div => benefitCarousel.appendChild(div));
+                return;
+            }
+
+            animating = true;
+            benefitCarousel.style.transition = "opacity 0.4s";
+            benefitCarousel.style.opacity = "0";
+
+            setTimeout(() => {
+                benefitCarousel.innerHTML = '';
+                items.forEach(div => benefitCarousel.appendChild(div));
+                benefitCarousel.style.transition = "opacity 0.4s";
+                benefitCarousel.style.opacity = "1";
+                setTimeout(() => {
+                    benefitCarousel.style.transition = "";
+                    animating = false;
+                }, 400);
+            }, 400);
+        }
+
+        function benefitPrev() {
+            if (animating) return;
+            benefitIndex = (benefitIndex - 1 + benefitItems.length) % benefitItems.length;
+            renderBenefitCarousel(true);
+            resetBenefitInterval();
+        }
+
+        function benefitNext() {
+            if (animating) return;
+            benefitIndex = (benefitIndex + 1) % benefitItems.length;
+            renderBenefitCarousel(true);
+            resetBenefitInterval();
+        }
+
+        document.getElementById('benefit-prev').onclick = benefitPrev;
+        document.getElementById('benefit-next').onclick = benefitNext;
+
+        // Auto-slide every 3 seconds
+        let benefitInterval = setInterval(benefitNext, 3000);
+        function resetBenefitInterval() {
+            clearInterval(benefitInterval);
+            benefitInterval = setInterval(benefitNext, 3000);
+        }
+
+        // Make carousel container relative for absolute positioning
+        benefitCarousel.parentNode.classList.add('relative');
+        benefitCarousel.classList.add('relative');
+
+        renderBenefitCarousel();
+    </script>
+
+    <!-- Carousel Image Tumpuk -->
+    <section class="py-10 text-center overflow-x-hidden">
+        <h3 class="text-xl font-bold text-blue-700 mb-6">Visualisasi Social Awareness</h3>
+        <div id="stacked-carousel"
+            class="relative w-full max-w-xs sm:max-w-2xl mx-auto h-80 flex items-center justify-center select-none overflow-x-visible"
+            style="height: 340px;">
+            <!-- Images will be injected here -->
+        </div>
+        <div id="carousel-dots" class="flex justify-center gap-2 mt-12 overflow-x-auto px-2">
+            <!-- Dots will be injected here -->
+        </div>
+    </section>
+    <script>
+        const images = [
+            "img/Q1.png",
+            "img/Q2.png",
+            "img/Q3.png",
+            "img/Q4.png",
+            "img/Q5.png"
+        ];
+        let imageIndex = 0;
+        let isAnimating = false;
+        let carouselInterval;
+
+        // Position and style for each stack slot
+        const stackSlots = [
+            { w: 140, h: 200, z: 10, o: 0.18, t: 70, l: -160, s: 0.7 },
+            { w: 180, h: 260, z: 20, o: 0.45, t: 40, l: -80, s: 0.85 },
+            { w: 260, h: 368, z: 30, o: 1, t: 0, l: 0, s: 1 },
+            { w: 180, h: 260, z: 20, o: 0.45, t: 40, l: 80, s: 0.85 },
+            { w: 140, h: 200, z: 10, o: 0.18, t: 70, l: 160, s: 0.7 }
+        ];
+
+        function renderStackedCarousel(direction = null) {
+            const container = document.getElementById("stacked-carousel");
+            // If animating, don't re-render
+            if (isAnimating) return;
+            container.innerHTML = "";
+
+            // Create image elements for stack
+            const order = [-2, -1, 0, 1, 2];
+            const imgs = [];
+            order.forEach((offset, i) => {
+                let idx = (imageIndex + offset + images.length) % images.length;
+                const img = document.createElement("img");
+                img.src = images[idx];
+                img.alt = `Social Awareness ${idx + 1}`;
+                img.className = "absolute rounded-xl shadow-xl carousel-img";
+                img.style.width = stackSlots[i].w + "px";
+                img.style.height = stackSlots[i].h + "px";
+                img.style.left = "50%";
+                img.style.top = stackSlots[i].t + "px";
+                img.style.transform = `translateX(-50%) translateX(${stackSlots[i].l}px) scale(${stackSlots[i].s})`;
+                img.style.zIndex = stackSlots[i].z;
+                img.style.opacity = stackSlots[i].o;
+                img.style.transition = "all 0.7s cubic-bezier(.77,0,.18,1)";
+                img.style.cursor = i === 2 ? "pointer" : "default";
+                if (i === 2) img.tabIndex = 0;
+                imgs.push(img);
+                container.appendChild(img);
+            });
+
+            // Animate if direction is given
+            if (direction) {
+                isAnimating = true;
+                imgs.forEach((img, i) => {
+                    setTimeout(() => {
+                        // Animate to new slot
+                        let nextSlot;
+                        if (direction === "left") {
+                            nextSlot = stackSlots[(i + 1) % stackSlots.length];
+                        } else {
+                            nextSlot = stackSlots[(i - 1 + stackSlots.length) % stackSlots.length];
+                        }
+                        img.style.width = nextSlot.w + "px";
+                        img.style.height = nextSlot.h + "px";
+                        img.style.top = nextSlot.t + "px";
+                        img.style.transform = `translateX(-50%) translateX(${nextSlot.l}px) scale(${nextSlot.s})`;
+                        img.style.zIndex = nextSlot.z;
+                        img.style.opacity = nextSlot.o;
+                    }, 10);
+                });
+                // Geser gambar SETELAH animasi selesai
+                setTimeout(() => {
+                    if (direction === "right") {
+                        imageIndex = (imageIndex + 1) % images.length;
+                    } else {
+                        imageIndex = (imageIndex - 1 + images.length) % images.length;
+                    }
+                    isAnimating = false;
+                    renderStackedCarousel();
+                    renderCarouselDots();
+                }, 700);
+            }
+        }
+
+        function renderCarouselDots() {
+            const dots = document.getElementById("carousel-dots");
+            dots.innerHTML = "";
+            for (let i = 0; i < images.length; i++) {
+                const dot = document.createElement("button");
+                dot.className = "w-3 h-3 rounded-full transition-all duration-300 " +
+                    (i === imageIndex ? "bg-orange-400 scale-125" : "bg-gray-300");
+                dot.setAttribute("aria-label", `Pilih gambar ${i + 1}`);
+                dot.onclick = () => {
+                    if (isAnimating || i === imageIndex) return;
+                    let diff = (i - imageIndex + images.length) % images.length;
+                    let direction = diff <= images.length / 2 ? "right" : "left";
+                    function step(count) {
+                        if (count === 0) return;
+                        if (direction === "right") {
+                            animateNextImage();
+                        } else {
+                            animatePrevImage();
+                        }
+                        setTimeout(() => step(count - 1), 720);
+                    }
+                    step(direction === "right" ? diff : images.length - diff);
+                    resetCarouselInterval();
+                };
+                dots.appendChild(dot);
+            }
+        }
+
+        function animateNextImage() {
+            if (isAnimating) return;
+            renderStackedCarousel("right");
+        }
+
+        function animatePrevImage() {
+            if (isAnimating) return;
+            renderStackedCarousel("left");
+        }
+
+        function nextImage() {
+            if (isAnimating) return;
+            animateNextImage();
+            resetCarouselInterval();
+        }
+
+        function prevImage() {
+            if (isAnimating) return;
+            animatePrevImage();
+            resetCarouselInterval();
+        }
+
+        // Keyboard navigation for accessibility
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") prevImage();
+            if (e.key === "ArrowRight") nextImage();
+        });
+
+        // Auto-slide every 3 seconds
+        function resetCarouselInterval() {
+            clearInterval(carouselInterval);
+            carouselInterval = setInterval(nextImage, 3000);
+        }
+
+        // Swipe support (optional)
+        let startX = null;
+        document.getElementById("stacked-carousel").addEventListener("touchstart", e => {
+            startX = e.touches[0].clientX;
+        });
+        document.getElementById("stacked-carousel").addEventListener("touchend", e => {
+            if (startX === null) return;
+            let dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 40) {
+                if (dx > 0) prevImage();
+                else nextImage();
+            }
+            startX = null;
+        });
+
+        renderStackedCarousel();
+        renderCarouselDots();
+        resetCarouselInterval();
+    </script>
+    <style>
+        html,
+        body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        /* Prevent flicker on carousel images */
+        .carousel-img {
+            will-change: transform, opacity, width, height, top, z-index;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            background: #fff;
+            user-select: none;
+            pointer-events: auto;
+        }
+    </style>
+
+    <!-- Footer -->
+    <footer class="bg-[#ea7701] text-white pt-12 pb-6 px-2 sm:px-6 md:px-20 overflow-x-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+            <!-- Logo -->
+            <div class="space-y-4">
+                <img src="img/logo-1.png" alt="Social Room" class="h-24" />
+            </div>
+
+            <!-- Quick Links -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-semibold mb-2 text-[#ffb702]">Quick Link</h3>
+                <ul class="space-y-1 text-sm text-white/90">
+                    <li><a href="index.html" class="hover:underline text-[#ede9e6]">Beranda</a></li>
+                    <li><a href="video.html" class="hover:underline text-[#ede9e6]">Video Interaktif</a></li>
+                    <li><a href="materi.html" class="hover:underline text-[#ede9e6]">Materi</a></li>
+                    <li><a href="kuis.html" class="hover:underline text-[#ede9e6]">Quiz</a></li>
+                </ul>
+            </div>
+
+            <!-- Follow Us -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-semibold mb-2 text-[#ffb702]">Follow Us</h3>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-center gap-2">
+                        <img src="img/ig.png" alt="Instagram" class="w-5 h-5"
+                            style="filter: drop-shadow(0 0 2px #ee98ba);" />
+                        <span class="text-[#ede9e6]">@pkm_socialroom</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <img src="img/tiktok.png" alt="TikTok" class="w-5 h-5"
+                            style="filter: drop-shadow(0 0 2px #8fcae8);" />
+                        <span class="text-[#ede9e6]">@pkm_socialroom</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <img src="img/email.png" alt="Email" class="w-5 h-5"
+                            style="filter: drop-shadow(0 0 2px #95da5a);" />
+                        <span class="text-[#ede9e6]">pkmsocialroom@gmail.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Maps -->
+            <div>
+                <h3 class="text-lg font-semibold mb-2 text-[#ffb702]">Get in Touch</h3>
+                <p class="text-sm mb-2 text-[#ede9e6]">
+                    Jl. Bali No.76, Karangtengah,<br>
+                    Kec. Sananwetan, Kota Blitar,<br>
+                    Jawa Timur
+                </p>
+                <iframe class="w-full h-40 mt-2 rounded-md border-2 border-[#8fcae8]"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14297.821646210828!2d112.15248228715818!3d-8.111480199999987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78eb8a158091c5%3A0x28aa06ec782b62ac!2sLembaga%20Pembinaan%20Khusus%20Anak%20Kelas%20I%20Blitar!5e1!3m2!1sen!2sus!4v1751793332090!5m2!1sen!2sus"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <div class="mt-10 text-center text-sm text-[#ede9e6]">
+            Copyright © 2025 Designed by <span class="text-[#8fcae8] font-semibold">SocialRoom</span>
+        </div>
+    </footer>
+</body>
+
+</html>

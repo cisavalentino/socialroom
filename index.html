@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load Font Awesome for hamburger icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Social Room</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+    <style>
+        .hero-header img.animate-rotate-img {
+            animation: imgRotate 50s linear infinite;
+        }
+
+        @keyframes imgRotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const menu = document.getElementById('mobile-menu');
+            const closeBtn = document.getElementById('mobile-menu-close');
+
+            function openMenu() {
+                menu.classList.remove('-translate-x-full');
+            }
+            function closeMenu() {
+                menu.classList.add('-translate-x-full');
+            }
+
+            if (toggle) {
+                toggle.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    openMenu();
+                });
+            }
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    closeMenu();
+                });
+            }
+
+            // Optional: close menu when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!menu.contains(e.target) && e.target !== toggle && !menu.classList.contains('-translate-x-full')) {
+                    closeMenu();
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="font-[Montserrat]">
+    <!-- Start of Navigation -->
+    <nav class="py-4 px-6 sm:px-20 shadow-md fixed w-full bg-[#ede9e6] z-50">
+        <!-- Mobile Nav -->
+        <div class="sm:hidden">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
+                    <img src="img/logo.png" alt="Logo" class="h-12" />
+                    <h1 class="text-2xl font-semibold text-[#0772D4]">Social <span class="text-orange-400">Room</span>
+                    </h1>
+                </a>
+                <!-- Hamburger Icon -->
+                <a href="javascript:void(0);"
+                    class="icon block text-3xl text-blue-700 hover:text-orange-400 focus:outline-none"
+                    id="mobile-menu-toggle" aria-label="Buka menu">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Desktop Nav -->
+        <div class="hidden sm:flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
+                <img src="img/logo.png" alt="Logo" class="h-12" />
+                <h1 class="text-2xl font-semibold text-[#0772D4]">Social <span class="text-orange-400">Room</span></h1>
+            </a>
+            <ul class="flex space-x-8">
+                <li><a href="index.html" class="text-sm font-medium text-orange-500 hover:text-orange-500">Beranda</a>
+                </li>
+                <li><a href="video.html" class="text-sm font-medium hover:text-orange-500">Video Interaktif</a></li>
+                <li><a href="materi.html" class="text-sm font-medium hover:text-orange-500">Materi</a></li>
+                <li><a href="kuis.html" class="text-sm font-medium hover:text-orange-500">Quiz</a></li>
+            </ul>
+            <div class="hidden md:flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                <input type="text" placeholder="Cari Disini" class="outline-none text-sm text-gray-600 w-32" />
+                <svg class="w-5 h-5 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387-1.414 1.414-4.387-4.387zM8 14a6 6 0 100-12 6 6 0 000 12z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+        </div>
+    </nav>
+    <!-- End of Navigation -->
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform -translate-x-full transition-transform duration-300 flex flex-col pt-20">
+        <button id="mobile-menu-close" class="absolute top-4 right-4 text-2xl text-gray-600">&times;</button>
+        <a href="index.html" class="block px-6 py-4 border-b hover:text-orange-500">Beranda</a>
+        <a href="video.html" class="block px-6 py-4 border-b hover:text-orange-500">Video Interaktif</a>
+        <a href="materi.html" class="block px-6 py-4 border-b hover:text-orange-500">Materi</a>
+        <a href="kuis.html" class="block px-6 py-4 hover:text-orange-500">Quiz</a>
+    </div>
+
+    <!-- Start of Hero Section -->
+    <section class="bg-[#8EC6F9]">
+        <div class="container mx-auto py-4 px-8 sm:py-8">
+            <div class="grid grid-cols-12 items-center mt-12">
+                <div class="col-span-12 lg:col-span-6">
+                    <div class="mb-8 sm:mb-16 text-center lg:text-start mt-8 lg:mt-0">
+                        <h2 class="text-4xl md:text-5xl font-semibold text-white mb-2">Care <span
+                                class="text-white">&</span>
+                            <span class="text-orange-400 font-bold">Share</span>
+                        </h2>
+                        <h1 class="text-4xl md:text-8xl font-extrabold text-[#0055c4] mb-4">Together</h1>
+                        <p class="text-lg md:text-2xl text-white mb-2 font-bold">Ayo Jadi Anak yang Peduli!</p>
+                        <p class="text-lg md:text-lg text-white mb-8 font-normal">
+                            Kenali perasaan diri dan teman untuk membentuk hubungan yang lebih menyenangkan!
+                        </p>
+                        <a href="video.html"
+                            class="inline-flex items-center px-6 py-3 bg-white text-blue-700 font-semibold text-lg rounded-full shadow-md hover:bg-blue-50 transition mb-4 md:mb-0">
+                            Mulai Belajar!
+                            <svg class="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="kuis.html"
+                            class="inline-flex items-center px-6 py-3 bg-orange-400 text-white font-semibold text-lg rounded-full shadow-md hover:bg-orange-100 transition">
+                            Mulai Kuis!
+                            <svg class="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-span-12 mb-16 lg:col-span-6 flex justify-center lg:mt-16 hero-header">
+                    <img src="img/anak-anak.png" alt="" class="w-[350px] sm:w-[550px] animate-rotate-img">
+                </div>
+            </div>
+    </section>
+    <!-- End of Hero Secrtion -->
+
+    <section>
+        <!-- Card 1: Apa itu Social Awareness -->
+        <div class="w-full max-w-4xl md:max-w-6xl mx-auto px-2 sm:px-4 py-4">
+            <div
+                class="shadow-lg flex flex-col md:flex-row items-center mt-4 rounded-3xl px-2 md:px-6 mx-auto bg-blue-100 w-full">
+                <div class="w-full md:w-auto flex-shrink-0 p-0 md:p-4 flex justify-center md:justify-start">
+                    <img src="img/sepeda.png" class="rounded-xl w-full max-w-xs md:w-96 object-cover mb-4 md:mb-0"
+                        alt="">
+                </div>
+                <div class="flex-1 p-2 md:p-4">
+                    <div class="mt-4 md:mt-8 mb-4 md:mb-8 text-center md:text-left">
+                        <h1 class="text-blue-700 text-xl sm:text-3xl font-bold mb-2">Apa itu <span
+                                class="text-orange-400">Social Awareness?</span></h1>
+                        <div class="flex justify-center md:justify-start">
+                            <div class="w-[80px] md:w-[100px] py-0.5 bg-abu mb-3"></div>
+                        </div>
+                    </div>
+                    <div class="mt-2 md:mt-4">
+                        <p class="text-base md:text-lg text-abu text-center md:text-left">
+                            "Social Awareness adalah kemampuan untuk memahami dan merasakan apa yang dirasakan orang
+                            lain, serta mampu melihat situasi dari sudut pandang mereka. Dengan social awareness, kita
+                            bisa lebih peka terhadap perasaan, kebutuhan, dan masalah orang lain di sekitar kita. Hal
+                            ini membuat kita lebih mudah untuk berempati, membantu, dan membangun hubungan yang baik
+                            dengan teman, keluarga, maupun orang baru."
+                        </p>
+                    </div>
+                    <div class="mt-8 items-center flex justify-center md:justify-start">
+                        <a href="materi.html"
+                            class="inline-flex items-center px-6 md:px-8 py-3 md:py-4 bg-orange-400 text-black font-bold text-base md:text-lg rounded-full shadow-md hover:bg-orange-500 transition">
+                            Selengkapnya
+                            <svg class="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Ayo Memahami Orang Lain -->
+        <div class="w-full max-w-4xl md:max-w-6xl mx-auto px-2 sm:px-4 py-4 mb-8">
+            <div
+                class="shadow-lg flex flex-col-reverse md:flex-row mt-4 rounded-3xl px-2 md:px-6 mx-auto bg-orange-100 items-center w-full">
+                <div class="flex-1 p-2 md:p-4">
+                    <div class="mt-4 md:mt-8 mb-4 md:mb-8 text-center md:text-left">
+                        <h1 class="text-blue-700 text-xl sm:text-3xl font-bold mb-2">Ayo Memahami <span
+                                class="text-orange-400">Orang Lain</span></h1>
+                        <div class="flex justify-center md:justify-start">
+                            <div class="w-[80px] md:w-[100px] py-0.5 bg-abu mb-3"></div>
+                        </div>
+                    </div>
+                    <div class="mt-2 md:mt-4">
+                        <p class="text-base md:text-lg text-abu text-center md:text-left">
+                            "Memahami orang lain dengan hati terbuka, membawa cinta yang tak terduga, membangun hubungan
+                            tanpa jeda."
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full md:w-auto flex-shrink-0 p-0 md:p-4 flex justify-center md:justify-end">
+                    <img src="img/ngobrol.png" class="rounded-xl w-full max-w-xs md:w-80 object-cover mb-4 md:mb-0"
+                        alt="">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="px-6 md:px-20 py-12 bg-gradient-to-b from-[#8EC6F9] to-white">
+            <h1 class="text-4xl md:text-5xl font-bold text-center text-[#0772D4] mb-12">Pentingnya Social Awareness</h1>
+
+            <!-- Benefits Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Benefit 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-center text-blue-600 mb-4">Menumbuhkan Empati</h3>
+                    <div class="text-center mb-6">
+                        <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto">
+                            <img src="img/aware1.png" alt="" class="w-14 h-14">
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-center">
+                        Membantu kita lebih peka dan peduli terhadap perasaan orang lain.
+                    </p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-center text-orange-600 mb-4">Mencegah Konflik</h3>
+                    <div class="text-center mb-6">
+                        <div class="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto">
+                            <img src="img/aware2.png" alt="" class="w-12 h-12">
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-center">
+                        Dengan memahami perbedaan, kita bisa lebih toleran dan menghindari pertengkaran.
+                    </p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-center text-green-600 mb-4">Mendorong Aksi Sosial</h3>
+                    <div class="text-center mb-6">
+                        <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto">
+                            <img src="img/aware3.png" alt="" class="w-12 h-12">
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-center">
+                        Kesadaran membuat kita tergerak untuk membantu dan berkontribusi bagi masyarakat.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="text-center mt-16">
+                <a href="materi.html"
+                    class="inline-flex items-center px-8 py-4 bg-orange-400 text-white font-bold text-lg rounded-full shadow-md hover:bg-orange-500 transition">
+                    Selengkapnya
+                    <svg class="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="w-full relative">
+        <img src="img/kasus.png" alt="Statistik" class="w-full object-cover h-[260px] brightness-75" />
+        <div
+            class="absolute top-0 left-0 w-full h-full flex flex-col md:flex-row items-center justify-center gap-10 px-6 md:px-20 py-8">
+            <!-- Statistik Wrapper: Flex Row on All Screens, Smaller Gap on Mobile -->
+            <div class="flex flex-row gap-4 md:gap-10 w-full justify-center">
+                <!-- Statistik 1: Emphasized -->
+                <div
+                    class="flex flex-col items-center text-center bg-white/70 rounded-2xl shadow px-4 py-3 md:px-6 md:py-4 border-2 border-orange-200 min-w-[140px]">
+                    <div class="mb-2">
+                        <img src="img/kasus1.png" alt="" class="w-12 h-12 md:w-16 md:h-16" />
+                    </div>
+                    <h2 class="text-2xl md:text-5xl font-extrabold text-orange-500 drop-shadow-lg mb-1">2.238</h2>
+                    <p class="text-xs md:text-lg font-semibold text-gray-800">Banyak tindak kriminal<br><span
+                            class="text-orange-400 font-bold">tahun 2022</span></p>
+                    <div class="mt-2 w-12 md:w-16 h-1 bg-orange-400 rounded-full"></div>
+                </div>
+
+                <!-- Statistik 2: Less Emphasis -->
+                <div
+                    class="flex flex-col items-center text-center bg-white/70 rounded-2xl shadow px-4 py-3 md:px-6 md:py-4 border-2 border-orange-200 min-w-[120px]">
+                    <div class="mb-2">
+                        <img src="img/kasus2.png" alt="" class="w-12 md:w-16" />
+                    </div>
+                    <h2 class="text-lg md:text-3xl font-bold text-orange-400 mb-1">115</h2>
+                    <p class="text-xs md:text-base text-gray-700">Anak binaan LPKA<br><span
+                            class="text-orange-400">Desember
+                            2024</span></p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="relative bg-gradient-to-b from-white to-[#8EC6F9] px-6 md:px-20 py-20">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-[#0055c4] mb-16 text-center drop-shadow-lg">
+            Bagaimana Kami <span class="text-orange-400">Bergerak?</span>
+            <div class="w-40 h-1 bg-blue-500 mx-auto mt-3 rounded-full"></div>
+        </h2>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-12 relative z-10">
+            <!-- Step 1 -->
+            <div
+                class="flex flex-col items-center bg-white rounded-2xl shadow-xl px-8 py-10 max-w-xs hover:scale-105 transition-transform duration-300 border-t-4 border-blue-400">
+                <div class="bg-blue-100 rounded-full p-4 mb-4 shadow">
+                    <img src="img/kami1.png" alt="Sosialisasi" class="w-20 h-20" />
+                </div>
+                <h3 class="text-xl font-bold text-[#0055c4] mb-2">Sosialisasi</h3>
+                <p class="text-gray-600 text-sm">Memberikan pemahaman dan motivasi kepada anak binaan melalui pendekatan
+                    interaktif dan menyenangkan.</p>
+            </div>
+            <!-- Arrow 1 -->
+            <div class="hidden md:block">
+                <svg width="60" height="24" fill="none" viewBox="0 0 60 24">
+                    <path d="M0 12h54m0 0l-7-7m7 7l-7 7" stroke="#0772D4" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="block md:hidden text-4xl text-blue-900 my-6">⬇️</div>
+            <!-- Step 2 -->
+            <div
+                class="flex flex-col items-center bg-white rounded-2xl shadow-xl px-8 py-10 max-w-xs hover:scale-105 transition-transform duration-300 border-t-4 border-orange-400">
+                <div class="bg-orange-100 rounded-full p-4 mb-4 shadow">
+                    <img src="img/kami2.png" alt="Pelaksanaan Program" class="w-20 h-20" />
+                </div>
+                <h3 class="text-xl font-bold text-[#0055c4] mb-2">Pelaksanaan Program<br><span
+                        class="text-orange-400">“Ruang Misi”</span></h3>
+                <p class="text-gray-600 text-sm">Mengadakan berbagai kegiatan edukatif, kreatif, dan kolaboratif untuk
+                    meningkatkan social awareness.</p>
+            </div>
+            <!-- Arrow 2 -->
+            <div class="hidden md:block">
+                <svg width="60" height="24" fill="none" viewBox="0 0 60 24">
+                    <path d="M0 12h54m0 0l-7-7m7 7l-7 7" stroke="#0772D4" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="block md:hidden text-4xl text-blue-900 my-6">⬇️</div>
+            <!-- Step 3 -->
+            <div
+                class="flex flex-col items-center bg-white rounded-2xl shadow-xl px-8 py-10 max-w-xs hover:scale-105 transition-transform duration-300 border-t-4 border-green-400">
+                <div class="bg-green-100 rounded-full p-4 mb-4 shadow">
+                    <img src="img/kami3.png" alt="Evaluasi" class="w-20 h-20" />
+                </div>
+                <h3 class="text-xl font-bold text-[#0055c4] mb-2">Evaluasi &amp; Keberlanjutan</h3>
+                <p class="text-gray-600 text-sm">Melakukan evaluasi, refleksi, dan pengembangan program agar manfaatnya
+                    terus berlanjut.</p>
+            </div>
+        </div>
+        <!-- Decorative shapes -->
+        <div class="absolute top-0 left-0 w-32 h-32 bg-blue-100 rounded-full opacity-40 -z-10 blur-2xl"></div>
+        <div class="absolute bottom-0 right-0 w-40 h-40 bg-orange-100 rounded-full opacity-30 -z-10 blur-2xl"></div>
+    </section>
+
+    <!-- Tentang Kami -->
+    <section class="relative">
+        <img src="img/about.png" alt="Tentang Kami" class="w-full h-[420px] object-cover brightness-50" />
+        <div class="absolute inset-0 flex flex-col justify-center items-center text-white px-4 md:px-20 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                Tentang <span class="text-orange-400">Kami</span>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mt-2"></div>
+            </h2>
+            <p class="max-w-4xl text-md md:text-lg leading-relaxed">
+                Website ini hadir untuk meningkatkan <span class="text-orange-300 font-semibold">Social
+                    Awareness</span> terhadap kondisi anak binaan di <span class="text-blue-300 font-semibold">LPKA
+                    Kelas 1 Blitar</span>.<br>
+                Kami ingin membuka mata masyarakat bahwa mereka anak-anak dengan <span
+                    class="text-orange-300 font-semibold">harapan, potensi, dan masa depan</span>.<br>
+                Lewat informasi, kisah, dan aksi nyata, kami mengajak semua untuk <span
+                    class="text-orange-300 font-semibold">lebih peduli, memahami, dan terlibat</span> dalam
+                mendukung perubahan positif mereka.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#ea7701] text-white pt-12 pb-6 px-6 md:px-20">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+            <!-- Logo -->
+            <div class="space-y-4">
+                <img src="img/logo-1.png" alt="Social Room" class="h-24" />
+            </div>
+
+            <!-- Quick Links -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-semibold mb-2 text-[#ffb702]">Quick Link</h3>
+                <ul class="space-y-1 text-sm text-white/90">
+                    <li><a href="index.html" class="hover:underline text-[#ede9e6]">Beranda</a></li>
+                    <li><a href="video.html" class="hover:underline text-[#ede9e6]">Video Interaktif</a></li>
+                    <li><a href="materi.html" class="hover:underline text-[#ede9e6]">Materi</a></li>
+                    <li><a href="kuis.html" class="hover:underline text-[#ede9e6]">Quiz</a></li>
+                </ul>
+            </div>
+
+            <!-- Follow Us -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-semibold mb-2 text-[#ffb702]">Follow Us</h3>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-center gap-2">
+                        <img src="img/ig.png" alt="Instagram" class="w-5 h-5"
+                            style="filter: drop-shadow(0 0 2px #ee98ba);" />
+                        <a href="https://www.instagram.com/pkm_socialroom">
+                            <span class="text-[#ede9e6]">@pkm_socialroom</span></a>
+
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <img src="img/tiktok.png" alt="TikTok" class="w-5 h-5"
+                            style="filter: drop-shadow(0 0 2px #8fcae8);" />
+                        <a href="https://www.tiktok.com/@pkm_socialroom">
+                            <span class="text-[#ede9e6]">@pkm_socialroom</span>
+                        </a>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <img src="img/email.png" alt="Email" class="w-5 h-5"
+                            style="filter: drop-shadow(0 0 2px #95da5a);" />
+                        <span class="text-[#ede9e6]">pkmsocialroom@gmail.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Maps -->
+            <div>
+                <h3 class="text-lg font-semibold mb-2 text-[#ffb702]">Get in Touch</h3>
+                <p class="text-sm mb-2 text-[#ede9e6]">
+                    Jl. Bali No.76, Karangtengah,<br>
+                    Kec. Sananwetan, Kota Blitar,<br>
+                    Jawa Timur
+                </p>
+                <iframe class="w-full h-40 mt-2 rounded-md border-2 border-[#8fcae8]"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14297.821646210828!2d112.15248228715818!3d-8.111480199999987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78eb8a158091c5%3A0x28aa06ec782b62ac!2sLembaga%20Pembinaan%20Khusus%20Anak%20Kelas%20I%20Blitar!5e1!3m2!1sen!2sus!4v1751793332090!5m2!1sen!2sus"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="mt-10 text-center text-sm text-[#ede9e6]">
+            Copyright © 2025 Designed by <span class="text-[#8fcae8] font-semibold">SocialRoom</span>
+        </div>
+    </footer>
+
+</body>
+
+</html>

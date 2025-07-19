@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Interaktif - Social Room</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const videos = [
+                {
+                    title: "Part 1: Cintai Diri Sendiri",
+                    src: "https://www.youtube.com/embed/AD1TLJHUD8o?si=05xhWilCnKtdNV8m",
+                    desc: `<p class='text-gray-700 leading-relaxed text-sm md:text-base text-center mt-4'>Sebelum kita bisa peduli pada orang lain, kita perlu belajar peduli pada diri sendiri.<br>Mencintai diri bukan egois—itu adalah fondasi untuk tumbuh, bahagia, dan memberi dengan tulus.</p>`
+                },
+                {
+                    title: "Part 2: Mendengar Dengan Tulus",
+                    src: "https://www.youtube.com/embed/kARibAK_Yeg?si=5yz2sblBXWzX97x1",
+                    desc: `<p class='text-gray-700 leading-relaxed text-sm md:text-base text-center mt-4'>Kebanyakan orang hanya mendengar untuk membalas, bukan untuk memahami.<br><br>Social awareness dimulai dari mendengar — bukan hanya dengan telinga, tapi juga dengan hati.</p>`
+                },
+                {
+                    title: "Part 3: Melatih Empati, Bukan Simpati",
+                    src: "https://www.youtube.com/embed/IFjHCi2kRUI?si=216nkFfVETPRWx4c",
+                    desc: `<p class='text-gray-700 leading-relaxed text-sm md:text-base text-center mt-4'>Empati adalah kemampuan merasakan apa yang orang lain rasakan, bukan sekadar merasa kasihan.<br><br>Dengan empati, kamu bisa melihat dunia dari sudut pandang orang lain.</p>`
+                },
+                {
+                    title: "Part 4: Sadari Perbedaan, Lebih Peduli Sekitar",
+                    src: "https://www.youtube.com/embed/eqN68uWRqdk?si=_Jr8aTSO9V69d2I9",
+                    desc: `<p class='text-gray-700 leading-relaxed text-sm md:text-base text-center mt-4'>Setiap orang tumbuh dalam kondisi yang berbeda — entah dari segi ekonomi, keluarga, akses pendidikan, atau lingkungan sosial.<br><br>Social Awareness dimulai saat kita berhenti membandingkan, dan mulai memahami bahwa tidak semua orang memulai dari garis yang sama.</p>`
+                },
+                {
+                    title: "Part 5: Bertindak Nyata, Sekecil Apapun",
+                    src: "https://www.youtube.com/embed/PsJtuDrHDp8?si=9gOx5kdA4x3USsNJ",
+                    desc: `<p class='text-gray-700 leading-relaxed text-sm md:text-base text-center mt-4'>Social awareness bukan cuma soal tahu, tapi juga mau melakukan sesuatu.<br><br>Tindakan kecil yang tulus bisa menciptakan dampak besar.</p>`
+                },
+            ];
+
+            let currentVideo = 0;
+
+            const videoFrame = document.getElementById("video-frame");
+            const videoTitle = document.getElementById("video-title");
+            const videoDesc = document.getElementById("video-desc");
+            const videoListBtns = document.querySelectorAll(".video-list-btn");
+
+            function renderVideo(index) {
+                videoFrame.src = videos[index].src;
+                videoTitle.innerText = videos[index].title;
+                videoDesc.innerHTML = videos[index].desc;
+                videoListBtns.forEach((btn, i) => {
+                    if (i === index) {
+                        btn.classList.add("bg-blue-700", "text-white");
+                        btn.classList.remove("bg-white", "text-blue-700");
+                    } else {
+                        btn.classList.remove("bg-blue-700", "text-white");
+                        btn.classList.add("bg-white", "text-blue-700");
+                    }
+                });
+                // Show/hide prev/next buttons
+                document.getElementById("prev-btn").style.display = (index === 0) ? "none" : "";
+                document.getElementById("next-btn").style.display = (index === videos.length - 1) ? "none" : "";
+            }
+
+            document.getElementById("next-btn").addEventListener("click", () => {
+                currentVideo = (currentVideo + 1) % videos.length;
+                renderVideo(currentVideo);
+            });
+
+            document.getElementById("prev-btn").addEventListener("click", () => {
+                currentVideo = (currentVideo - 1 + videos.length) % videos.length;
+                renderVideo(currentVideo);
+            });
+
+            videoListBtns.forEach((btn, i) => {
+                btn.addEventListener("click", () => {
+                    currentVideo = i;
+                    renderVideo(currentVideo);
+                });
+            });
+
+            // Initial highlight
+            renderVideo(currentVideo);
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const menu = document.getElementById('mobile-menu');
+            const closeBtn = document.getElementById('mobile-menu-close');
+
+            function openMenu() {
+                menu.classList.remove('-translate-x-full');
+            }
+            function closeMenu() {
+                menu.classList.add('-translate-x-full');
+            }
+
+            if (toggle) {
+                toggle.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    openMenu();
+                });
+            }
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    closeMenu();
+                });
+            }
+
+            // Optional: close menu when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!menu.contains(e.target) && e.target !== toggle && !menu.classList.contains('-translate-x-full')) {
+                    closeMenu();
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="bg-gradient-to-b from-[#8fcae8] to-[#ede9e6] min-h-screen font-[Montserrat]">
+    <!-- Start of Navigation -->
+    <nav class="py-4 px-6 sm:px-20 shadow-md fixed w-full bg-[#ede9e6] z-50">
+        <!-- Mobile Nav -->
+        <div class="sm:hidden">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
+                    <img src="img/logo.png" alt="Logo" class="h-12" />
+                    <h1 class="text-2xl font-semibold text-[#ea7701]">Social <span class="text-[#ffb702]">Room</span>
+                    </h1>
+                </a>
+                <!-- Hamburger Icon -->
+                <a href="javascript:void(0);"
+                    class="icon block text-3xl text-[#ea7701] hover:text-[#ffb702] focus:outline-none"
+                    id="mobile-menu-toggle" aria-label="Buka menu">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Desktop Nav -->
+        <div class="hidden sm:flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
+                <img src="img/logo.png" alt="Logo" class="h-12" />
+                <h1 class="text-2xl font-semibold text-[#ea7701]">Social <span class="text-[#ffb702]">Room</span></h1>
+            </a>
+            <ul class="flex space-x-8">
+                <li><a href="index.html" class="text-sm font-medium hover:text-[#ea7701]">Beranda</a>
+                </li>
+                <li><a href="video.html" class="text-sm font-medium text-[#ea7701] hover:text-[#ffb702]">Video
+                        Interaktif</a></li>
+                <li><a href="materi.html" class="text-sm font-medium hover:text-[#ea7701]">Materi</a></li>
+                <li><a href="kuis.html" class="text-sm font-medium hover:text-[#ea7701]">Quiz</a></li>
+            </ul>
+            <div class="hidden md:flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                <input type="text" placeholder="Cari Disini" class="outline-none text-sm text-gray-600 w-32" />
+                <svg class="w-5 h-5 text-[#ea7701] ml-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387-1.414 1.414-4.387-4.387zM8 14a6 6 0 100-12 6 6 0 000 12z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+        </div>
+    </nav>
+    <!-- End of Navigation -->
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed top-0 left-0 h-full w-64 bg-[#ede9e6] shadow-lg z-50 transform -translate-x-full transition-transform duration-300 flex flex-col pt-20">
+        <button id="mobile-menu-close" class="absolute top-4 right-4 text-2xl text-gray-600">&times;</button>
+        <a href="index.html" class="block px-6 py-4 border-b hover:text-[#ea7701]">Beranda</a>
+        <a href="video.html" class="block px-6 py-4 border-b text-[#ea7701] hover:text-[#ffb702]">Video Interaktif</a>
+        <a href="materi.html" class="block px-6 py-4 border-b hover:text-[#ea7701]">Materi</a>
+        <a href="kuis.html" class="block px-6 py-4 hover:text-[#ea7701]">Quiz</a>
+    </div>
+    <!-- Konten Utama -->
+    <main class="px-6 md:px-20 py-24">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-[#ea7701] mb-2">
+            Video <span class="text-[#ffb702]">Interaktif</span>
+            <div class="w-32 h-1 bg-[#8fcae8] mx-auto mt-2"></div>
+        </h2>
+        <p class="text-center text-[#ea7701] text-lg font-semibold mb-10">
+            Yuk, buka wawasan dan pedulimu lewat video interaktif yang informatif dan menyenangkan!
+        </p>
+
+        <!-- Player utama -->
+        <div class="bg-white rounded-xl shadow-md p-6 w-full md:w-[1000px] mx-auto">
+            <div class="w-full aspect-video rounded-md overflow-hidden">
+                <iframe id="video-frame" width="100%" height="100%" class="rounded-md"
+                    src="https://www.youtube.com/embed/AD1TLJHUD8o?si=05xhWilCnKtdNV8m" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="flex justify-between items-center mt-6 relative">
+                <button id="prev-btn"
+                    class="bg-[#ea7701] hover:bg-[#ffb702] text-white font-bold px-4 py-2 rounded-full absolute left-0 top-1/2 -translate-y-1/2">Previous</button>
+                <h3 id="video-title" class="text-[#ea7701] font-bold text-lg text-center mx-auto">
+                    Part 1: Cintai Diri Sendiri
+                </h3>
+                <button id="next-btn"
+                    class="bg-[#ea7701] hover:bg-[#ffb702] text-white font-bold px-4 py-2 rounded-full absolute right-0 top-1/2 -translate-y-1/2">Next</button>
+            </div>
+            <div id="video-desc"></div>
+        </div>
+
+        <!-- Daftar video -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 max-w-6xl mx-auto">
+            <button class="video-list-btn text-[#ea7701] bg-[#ede9e6] rounded-lg p-4 shadow hover:shadow-md transition">
+                <p class=" font-bold">Part 1: Cintai Diri Sendiri</p>
+            </button>
+            <button class="video-list-btn text-[#ea7701] bg-[#ede9e6] rounded-lg p-4 shadow hover:shadow-md transition">
+                <p class=" font-bold">Part 2: Mendengar Dengan Tulus</p>
+            </button>
+            <button class="video-list-btn text-[#ea7701] bg-[#ede9e6] rounded-lg p-4 shadow hover:shadow-md transition">
+                <p class=" font-bold">Part 3: Melatih Empati, Bukan Simpati</p>
+            </button>
+            <button class="video-list-btn text-[#ea7701] bg-[#ede9e6] rounded-lg p-4 shadow hover:shadow-md transition">
+                <p class=" font-bold">Part 4: Sadari Perbedaan, Lebih Peduli Sekitar</p>
+            </button>
+            <button class="video-list-btn text-[#ea7701] bg-[#ede9e6] rounded-lg p-4 shadow hover:shadow-md transition">
+                <p class=" font-bold">Part 5: Bertindak Nyata, Sekecil Apapun</p>
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#ea7701] text-white pt-12 pb-6 px-6 md:px-20">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+            <!-- Logo -->
+            <div class="space-y-4">
+                <img src="img/logo-1.png" alt="Social Room" class="h-24" />
+            </div>
+
+            <!-- Quick Links -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-semibold mb-2 text-[#ffb702]">Quick Link</h3>
+                <ul class="space-y-1 text-sm text-white/90">
+                    <li><a href="index.html" class="hover:underline text-[#ede9e6]">Beranda</a></li>
+                    <li><a href="video.html" class="hover:underline text-[#ede9e6]">Video Interaktif</a></li>
+                    <li><a href="materi.html" class="hover:underline text-[#ede9e6]">Materi</a></li>
+                    <li><a href="kuis.html" class="hover:underline text-[#ede9e6]">Quiz</a></li>
+                </ul>
+            </div>
+
+            <!-- Follow Us -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-semibold mb-2 text-[#ffb702]">Follow Us</h3>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-center gap-2">
+                        <img src="img/ig.png" alt="Instagram" class="w-5 h-5"
+                            style="filter: drop-shadow(0 0 2px #ee98ba);" />
+                        <a href="https://www.instagram.com/pkm_socialroom">
+                            <span class="text-[#ede9e6]">@pkm_socialroom</span></a>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <img src="img/tiktok.png" alt="TikTok" class="w-5 h-5"
+                            style="filter: drop-shadow(0 0 2px #8fcae8);" />
+                        <a href="https://www.tiktok.com/@pkm_socialroom">
+                            <span class="text-[#ede9e6]">@pkm_socialroom</span>
+                        </a>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <img src="img/email.png" alt="Email" class="w-5 h-5"
+                            style="filter: drop-shadow(0 0 2px #95da5a);" />
+                        <span class="text-[#ede9e6]">pkmsocialroom@gmail.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Maps -->
+            <div>
+                <h3 class="text-lg font-semibold mb-2 text-[#ffb702]">Get in Touch</h3>
+                <p class="text-sm mb-2 text-[#ede9e6]">
+                    Jl. Bali No.76, Karangtengah,<br>
+                    Kec. Sananwetan, Kota Blitar,<br>
+                    Jawa Timur
+                </p>
+                <iframe class="w-full h-40 mt-2 rounded-md border-2 border-[#8fcae8]"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14297.821646210828!2d112.15248228715818!3d-8.111480199999987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78eb8a158091c5%3A0x28aa06ec782b62ac!2sLembaga%20Pembinaan%20Khusus%20Anak%20Kelas%20I%20Blitar!5e1!3m2!1sen!2sus!4v1751793332090!5m2!1sen!2sus"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="mt-10 text-center text-sm text-[#ede9e6]">
+            Copyright © 2025 Designed by <span class="text-[#8fcae8] font-semibold">SocialRoom</span>
+        </div>
+    </footer>
+</body>
+
+</html>

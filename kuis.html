@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Social Room</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const menu = document.getElementById('mobile-menu');
+            const closeBtn = document.getElementById('mobile-menu-close');
+
+            function openMenu() {
+                menu.classList.remove('-translate-x-full');
+            }
+            function closeMenu() {
+                menu.classList.add('-translate-x-full');
+            }
+
+            if (toggle) {
+                toggle.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    openMenu();
+                });
+            }
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    closeMenu();
+                });
+            }
+
+            // Optional: close menu when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!menu.contains(e.target) && e.target !== toggle && !menu.classList.contains('-translate-x-full')) {
+                    closeMenu();
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="bg-gradient-to-b from-[#8fcae8] to-[#ede9e6] min-h-screen font-[Montserrat] overflow-x-hidden">
+    <!-- Start of Navigation -->
+    <nav class="py-4 px-6 sm:px-20 shadow-md fixed w-full bg-[#ede9e6] z-50">
+        <!-- Mobile Nav -->
+        <div class="sm:hidden">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
+                    <img src="img/logo.png" alt="Logo" class="h-12" />
+                    <h1 class="text-2xl font-semibold text-[#ea7701]">Social <span class="text-[#ffb702]">Room</span>
+                    </h1>
+                </a>
+                <!-- Hamburger Icon -->
+                <a href="javascript:void(0);"
+                    class="icon block text-3xl text-blue-700 hover:text-orange-400 focus:outline-none"
+                    id="mobile-menu-toggle" aria-label="Buka menu">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Desktop Nav -->
+        <div class="hidden sm:flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
+                <img src="img/logo.png" alt="Logo" class="h-12" />
+                <h1 class="text-2xl font-semibold text-[#ea7701]">Social <span class="text-[#ffb702]">Room</span></h1>
+            </a>
+            <ul class="flex space-x-8">
+                <li><a href="index.html" class="text-sm font-medium hover:text-[#ea7701]">Beranda</a>
+                </li>
+                <li><a href="video.html" class="text-sm font-medium hover:text-[#ea7701]">Video Interaktif</a></li>
+                <li><a href="materi.html" class="text-sm font-medium hover:text-[#ea7701]">Materi</a></li>
+                <li><a href="kuis.html" class="text-sm font-medium text-[#ea7701] hover:text-[#ffb702]">Quiz</a></li>
+            </ul>
+            <div class="hidden md:flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                <input type="text" placeholder="Cari Disini" class="outline-none text-sm text-gray-600 w-32" />
+                <svg class="w-5 h-5 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387-1.414 1.414-4.387-4.387zM8 14a6 6 0 100-12 6 6 0 000 12z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+        </div>
+    </nav>
+    <!-- End of Navigation -->
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform -translate-x-full transition-transform duration-300 flex flex-col pt-20">
+        <button id="mobile-menu-close" class="absolute top-4 right-4 text-2xl text-gray-600">&times;</button>
+        <a href="index.html" class="block px-6 py-4 border-b hover:text-orange-500">Beranda</a>
+        <a href="video.html" class="block px-6 py-4 border-b hover:text-orange-500">Video Interaktif</a>
+        <a href="materi.html" class="block px-6 py-4 border-b hover:text-orange-500">Materi</a>
+        <a href="kuis.html" class="block px-6 py-4 hover:text-orange-500">Quiz</a>
+    </div>
+
+    <!-- Pilihan Misi -->
+    <section id="misi-section" class="px-6 md:px-20 py-24 text-center">
+        <h2 class=" text-3xl md:text-4xl font-bold text-orange-400 mb-2">Quiz <span
+                class="text-blue-700 underline">Ruang Misi</span>
+        </h2>
+        <p class="text-gray-700 py-10">Ingin tahu seberapa peka kamu terhadap perasaan, kebutuhan, dan kondisi
+            orang-orang di sekitarmu?</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div class="bg-white shadow-md p-6 rounded-xl">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">Quiz Ruang Misi 1 "Empati"</h3>
+                <button onclick="openModal(1)"
+                    class="bg-gradient-to-b from-orange-300 to-orange-500 text-white px-6 py-2 rounded-full shadow">Mulai</button>
+            </div>
+            <div class="bg-white shadow-md p-6 rounded-xl">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">Quiz Ruang Misi 2 "Kesadaran Berorganisasi"</h3>
+                <button onclick="openModal(2)"
+                    class="bg-gradient-to-b from-orange-300 to-orange-500 text-white px-6 py-2 rounded-full shadow">Mulai</button>
+            </div>
+            <div class="bg-white shadow-md p-6 rounded-xl">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">Quiz Ruang Misi 3 "Mengenali satu sama lain"</h3>
+                <button onclick="openModal(3)"
+                    class="bg-gradient-to-b from-orange-300 to-orange-500 text-white px-6 py-2 rounded-full shadow">Mulai</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Input Nama -->
+    <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 px-2">
+        <div
+            class="bg-white rounded-2xl shadow-2xl p-4 sm:p-8 md:p-12 w-full max-w-md sm:max-w-xl relative flex flex-col max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" aria-label="Tutup"
+                class="absolute top-2 right-2 sm:top-4 sm:right-4 text-2xl text-gray-400 hover:text-blue-600 transition focus:outline-none">&times;</button>
+            <h3 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-blue-700 mb-4 text-center">Masukkan Nama Kamu
+            </h3>
+            <div
+                class="bg-blue-50 border-l-4 border-blue-400 p-3 sm:p-4 mb-6 text-gray-800 text-sm sm:text-base md:text-lg rounded-lg">
+                <div class="font-semibold text-blue-700 mb-2">Petunjuk Pengerjaan Kuis:</div>
+                <ul class="list-disc pl-4 sm:pl-5 space-y-1">
+                    <li>Kuis ini terdiri dari 7 pertanyaan untuk setiap <span
+                            class="font-semibold text-orange-500">Ruang Misi</span>.</li>
+                    <li>Bacalah setiap pertanyaan dengan seksama.</li>
+                    <li>Pilih jawaban yang paling sesuai dengan pendapat atau pengalamanmu menggunakan tombol <span
+                            class="font-semibold">1</span> sampai <span class="font-semibold">4</span>:</li>
+                </ul>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-3 mb-2">
+                    <div class="flex flex-col items-center">
+                        <span class="font-bold text-blue-700 text-base sm:text-lg">4</span>
+                        <span class="text-xs md:text-sm">Sangat Setuju</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="font-bold text-blue-700 text-base sm:text-lg">3</span>
+                        <span class="text-xs md:text-sm">Setuju</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="font-bold text-blue-700 text-base sm:text-lg">2</span>
+                        <span class="text-xs md:text-sm">Kurang Setuju</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="font-bold text-blue-700 text-base sm:text-lg">1</span>
+                        <span class="text-xs md:text-sm">Tidak Setuju</span>
+                    </div>
+                </div>
+                <ul class="list-disc pl-4 sm:pl-5 space-y-1 mt-2">
+                    <li>Jawabanmu akan membantu mengukur tingkat <span class="font-semibold text-orange-500">Social
+                            Awareness</span> kamu.</li>
+                    <li>Pastikan menjawab semua pertanyaan sebelum menyelesaikan kuis.</li>
+                </ul>
+            </div>
+            <input type="text" id="username" placeholder="Nama Kamu"
+                class="w-full px-4 py-3 border-2 border-blue-300 rounded-lg mb-6 text-base sm:text-lg focus:outline-none focus:border-blue-500 transition">
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button onclick="startQuiz()"
+                    class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 w-full text-base sm:text-lg font-semibold transition">Mulai
+                    Kuis</button>
+                <button onclick="closeModal()"
+                    class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 w-full text-base sm:text-lg font-semibold transition">Kembali</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Halaman Soal -->
+    <section id="quiz-section" class="hidden text-center py-10">
+        <h2 class=" text-3xl md:text-4xl font-bold text-orange-400 mb-2 mt-12">Quiz <span
+                class="text-blue-700 underline">Ruang Misi</span>
+        </h2>
+        <p class="text-gray-700 py-10">Pastikan Menjawab sesuai keadaanmu ya!</p>
+        <div class="text-blue-800 font-bold mb-2" id="quiz-progress">1 / 5</div>
+        <div class="bg-gradient-to-b from-orange-300 to-orange-500 text-white text-xl p-8 rounded-xl max-w-xl mx-auto shadow mb-6"
+            id="question">Soal akan tampil di sini</div>
+        <div class="flex justify-center space-x-4 mb-6">
+            <div class="grid grid-cols-2 gap-4 w-full max-w-xs">
+                <button id="btn4" onclick="selectAnswer(4)"
+                    class="bg-white text-blue-800 text-base md:text-lg font-bold py-4 px-2 rounded-lg shadow flex flex-col items-center justify-center transition-all">
+                    <span class="text-lg">4</span>
+                    <span class="text-xs md:text-sm">Sangat Setuju</span>
+                </button>
+                <button id="btn3" onclick="selectAnswer(3)"
+                    class="bg-white text-blue-800 text-base md:text-lg font-bold py-4 px-2 rounded-lg shadow flex flex-col items-center justify-center transition-all">
+                    <span class="text-lg">3</span>
+                    <span class="text-xs md:text-sm">Setuju</span>
+                </button>
+                <button id="btn2" onclick="selectAnswer(2)"
+                    class="bg-white text-blue-800 text-base md:text-lg font-bold py-4 px-2 rounded-lg shadow flex flex-col items-center justify-center transition-all">
+                    <span class="text-lg">2</span>
+                    <span class="text-xs md:text-sm">Kurang Setuju</span>
+                </button>
+                <button id="btn1" onclick="selectAnswer(1)"
+                    class="bg-white text-blue-800 text-base md:text-lg font-bold py-4 px-2 rounded-lg shadow flex flex-col items-center justify-center transition-all">
+                    <span class="text-lg">1</span>
+                    <span class="text-xs md:text-sm">Tidak Setuju</span>
+                </button>
+            </div>
+        </div>
+        <div class="flex justify-between items-center max-w-xl mx-auto">
+            <button onclick="prevQuestion()" class="bg-orange-500 text-white w-10 h-10 rounded-full">&#8592;</button>
+            <button id="nextBtn" onclick="nextQuestion()"
+                class="bg-orange-500 text-white px-4 py-2 rounded-full">Selanjutnya</button>
+        </div>
+    </section>
+
+    <!-- Halaman Hasil -->
+    <section id="result-section" class="hidden text-center py-20">
+        <h2 class="text-3xl font-bold text-blue-700 mb-4 mt-6">Hasil Quiz</h2>
+        <p class="text-lg" id="result-text">Nama dan hasil akan tampil di sini.</p>
+    </section>
+
+    <script>
+        const modal = document.getElementById("modal");
+        // closeModal function for modal button
+        function closeModal() {
+            modal.classList.add("hidden");
+            misiSection.classList.remove("hidden");
+        }
+        const quizSection = document.getElementById("quiz-section");
+        const misiSection = document.getElementById("misi-section");
+        const resultSection = document.getElementById("result-section");
+        const questionText = document.getElementById("question");
+        const progressText = document.getElementById("quiz-progress");
+        const resultText = document.getElementById("result-text");
+        const nextBtn = document.getElementById("nextBtn");
+        const answerButtons = [
+            document.getElementById("btn1"),
+            document.getElementById("btn2"),
+            document.getElementById("btn3"),
+            document.getElementById("btn4")
+        ];
+
+        // Skala jawaban
+        const scaleLabels = [
+            "Tidak Setuju",
+            "Kurang Setuju",
+            "Setuju",
+            "Sangat Setuju"
+        ];
+
+        // Soal untuk masing-masing ruang misi
+        const misiQuestions = [
+            [ // Ruang Misi 1
+                "Saya dapat mampu mengenali emosi teman sebaya dengan mudah.",
+                "Saya peduli dengan urusan yang sedang dihadapi orang lain.",
+                "Saya merasa gelisah jika mengabaikan orang lain yang sedang memiliki masalah",
+                "Saya merasa lebih baik menyelesaikan permasalahan sendiri daripada menyelesaikan permasalahan orang lain.",
+                "Banyak teman-teman yang meminta saya untuk membantu menyelesaikan permasalahannya.",
+                "Saya ingin menolong teman yang mengalami kesulitan",
+                "Saya merasa sedih apabila tidak bisa membantu menyelesaikan permasalahan teman saya."
+            ],
+            [ // Ruang Misi 2
+                "Saya mampu memunculkan sikap peduli dengan teman sebaya di LPKA.",
+                "Saya tidak mengenal dekat semua teman sebaya di LPKA",
+                "Saya mengetahui hampir semua informasi teman sebaya di LPKA dengan baik.",
+                "Saya mampu merespon dengan baik pertanyaan terkait teman sebaya di LPKA",
+                "Saya berusaha menjaga hubungan baik dengan teman sebaya di LPKA",
+                "Saya selalu berusaha untuk memenuhi kewajiban dan tugas saya di LPKA",
+                "Saya sering berpikir tentang bagaimana tindakan saya terhadap teman sebaya di LPKA"
+            ],
+            [ // Ruang Misi 3
+                "Saya mampu memecahkan permainan secara bekerja sama dengan teman sebaya.",
+                "Saya dapat dengan mudah mengendalikan emosi dalam memecahkan tantangan permainan.",
+                "Saya tidak mampu berkomunikasi secara baik dengan teman sebaya.",
+                "Saya merasa mudah untuk berbicara dengan teman sebaya saya tentang hal-hal pribadi",
+                "Saya dapat mengenali perasaan teman sebaya saya hanya dari ekspresi wajah atau bahasa tubuh mereka",
+                "Saya percaya bahwa teman sebaya saya mengenal saya dengan baik",
+                "Saya dapat menyebutkan karakteristik yang dimiliki teman sebaya"
+            ]
+        ];
+
+        let currentIndex = 0;
+        let answers = [];
+        let username = "";
+        let currentMisi = 0;
+
+        function openModal(misi) {
+            currentMisi = misi - 1;
+            answers = new Array(misiQuestions[currentMisi].length).fill(null);
+            modal.classList.remove("hidden");
+        }
+
+        function startQuiz() {
+            username = document.getElementById("username").value;
+            if (username.trim() === "") return alert("Masukkan nama terlebih dahulu.");
+
+            modal.classList.add("hidden");
+            misiSection.classList.add("hidden");
+            quizSection.classList.remove("hidden");
+            currentIndex = 0;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            questionText.innerText = misiQuestions[currentMisi][currentIndex];
+            progressText.innerText = `${currentIndex + 1} / ${misiQuestions[currentMisi].length}`;
+            updateAnswerStyles();
+
+            if (currentIndex === misiQuestions[currentMisi].length - 1) {
+                nextBtn.innerText = "Selesaikan Kuis";
+            } else {
+                nextBtn.innerText = "Selanjutnya";
+            }
+        }
+
+        function selectAnswer(score) {
+            answers[currentIndex] = score;
+            updateAnswerStyles();
+            if (currentIndex === misiQuestions[currentMisi].length - 1) {
+                nextBtn.innerText = "Selesaikan Kuis";
+            }
+        }
+
+        function updateAnswerStyles() {
+            // Reset all button styles
+            for (let i = 0; i < answerButtons.length; i++) {
+                answerButtons[i].classList.remove("bg-blue-600", "text-white", "ring-2", "ring-blue-600");
+                answerButtons[i].classList.add("bg-white", "text-blue-800");
+            }
+            // Highlight selected
+            const selected = answers[currentIndex];
+            if (selected !== null) {
+                answerButtons[selected - 1].classList.remove("bg-white", "text-blue-800");
+                answerButtons[selected - 1].classList.add("bg-blue-600", "text-white", "ring-2", "ring-blue-600");
+            }
+        }
+
+        function nextQuestion() {
+            if (answers[currentIndex] === null) {
+                alert("Silakan pilih jawaban terlebih dahulu.");
+                return;
+            }
+
+            if (currentIndex < misiQuestions[currentMisi].length - 1) {
+                currentIndex++;
+                showQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showQuestion();
+            }
+        }
+
+        function finishQuiz() {
+            quizSection.classList.add("hidden");
+            resultSection.classList.remove("hidden");
+            const total = answers.reduce((a, b) => a + b, 0);
+            const max = misiQuestions[currentMisi].length * 4;
+            const percent = Math.round((total / max) * 100);
+
+            // Tentukan predikat dan warna
+            let predikat = '', warna = '';
+            if (percent >= 70) {
+                predikat = 'TINGGI';
+                warna = 'green-500';
+            } else if (percent >= 30) {
+                predikat = 'SEDANG';
+                warna = 'yellow-400';
+            } else {
+                predikat = 'RENDAH';
+                warna = 'red-500';
+            }
+
+            // Kirim hasil ke server
+            fetch('save_quiz.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nama: username, nilai: percent, misi: currentMisi + 1 })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        resultText.innerHTML = `
+        <div class="bg-gradient-to-b from-orange-300 to-orange-500 text-white rounded-xl shadow-lg max-w-md mx-auto p-8 mb-6">
+            <div class="text-2xl font-bold mb-2">Selamat, ${username}!</div>
+            <div class="text-lg mb-4">Tingkat Social Awareness Anda: <span class='font-extrabold'>${percent}%</span></div>
+            <div class="text-5xl font-extrabold mb-2 text-${warna}">${predikat}</div>
+            <div class="w-full bg-white rounded-full h-4 mb-4">
+            <div class="h-4 rounded-full transition-all duration-700 bg-${warna}" style="width: ${percent}%"></div>
+            </div>
+            <div class="text-sm">Terima kasih telah mengikuti kuis ini.<br>Terus tingkatkan kepekaan sosialmu!</div>
+        </div>
+        <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-2 rounded-full shadow hover:bg-blue-700 transition">Kembali ke Beranda</button>
+        `;
+                    } else {
+                        resultText.innerHTML = `<div class='text-red-600 font-bold'>Gagal menyimpan hasil: ${data.message || 'Silakan coba lagi.'}</div>`;
+                    }
+                })
+                .catch((err) => {
+                    resultText.innerHTML = `<div class='text-red-600 font-bold'>Gagal menyimpan hasil. Silakan coba lagi.</div>`;
+                });
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-[#ea7701] text-white pt-12 pb-6 px-6 md:px-20">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+            <!-- Logo -->
+            <div class="space-y-4">
+                <img src="img/logo-1.png" alt="Social Room" class="h-24" />
+            </div>
+
+            <!-- Quick Links -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-semibold mb-2 text-[#ffb702]">Quick Link</h3>
+                <ul class="space-y-1 text-sm text-white/90">
+                    <li><a href="index.html" class="hover:underline text-[#ede9e6]">Beranda</a></li>
+                    <li><a href="video.html" class="hover:underline text-[#ede9e6]">Video Interaktif</a></li>
+                    <li><a href="materi.html" class="hover:underline text-[#ede9e6]">Materi</a></li>
+                    <li><a href="kuis.html" class="hover:underline text-[#ede9e6]">Quiz</a></li>
+                </ul>
+            </div>
+
+            <!-- Follow Us -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-semibold mb-2 text-[#ffb702]">Follow Us</h3>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-center gap-2">
+                        <img src="img/ig.png" alt="Instagram" class="w-5 h-5"
+                            style="filter: drop-shadow(0 0 2px #ee98ba);" />
+                        <span class="text-[#ede9e6]">@pkm_socialroom</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <img src="img/tiktok.png" alt="TikTok" class="w-5 h-5"
+                            style="filter: drop-shadow(0 0 2px #8fcae8);" />
+                        <span class="text-[#ede9e6]">@pkm_socialroom</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <img src="img/email.png" alt="Email" class="w-5 h-5"
+                            style="filter: drop-shadow(0 0 2px #95da5a);" />
+                        <span class="text-[#ede9e6]">pkmsocialroom@gmail.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Maps -->
+            <div>
+                <h3 class="text-lg font-semibold mb-2 text-[#ffb702]">Get in Touch</h3>
+                <p class="text-sm mb-2 text-[#ede9e6]">
+                    Jl. Bali No.76, Karangtengah,<br>
+                    Kec. Sananwetan, Kota Blitar,<br>
+                    Jawa Timur
+                </p>
+                <iframe class="w-full h-40 mt-2 rounded-md border-2 border-[#8fcae8]"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14297.821646210828!2d112.15248228715818!3d-8.111480199999987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78eb8a158091c5%3A0x28aa06ec782b62ac!2sLembaga%20Pembinaan%20Khusus%20Anak%20Kelas%20I%20Blitar!5e1!3m2!1sen!2sus!4v1751793332090!5m2!1sen!2sus"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <div class="mt-10 text-center text-sm text-[#ede9e6]">
+            Copyright © 2025 Designed by <span class="text-[#8fcae8] font-semibold">SocialRoom</span>
+        </div>
+    </footer>
+</body>
+
+</html>
