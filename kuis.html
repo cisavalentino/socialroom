@@ -250,11 +250,12 @@
         const resultText = document.getElementById("result-text");
         const nextBtn = document.getElementById("nextBtn");
         const answerButtons = [
-            document.getElementById("btn4"), // Sangat Setuju
-            document.getElementById("btn3"), // Setuju
+            document.getElementById("btn1"), // Tidak Setuju
             document.getElementById("btn2"), // Kurang Setuju
-            document.getElementById("btn1")  // Tidak Setuju
+            document.getElementById("btn3"), // Setuju
+            document.getElementById("btn4")  // Sangat Setuju
         ];
+
 
 
         // Skala jawaban
@@ -367,14 +368,21 @@
         }
 
         function selectAnswer(score) {
-            // Skor sesuai mapping, tombol 4 = mapping[0], tombol 3 = mapping[1], tombol 2 = mapping[2], tombol 1 = mapping[3]
-            const mapping = misiScoring[currentMisi][currentIndex];
+            const mapping = misiScoring[currentIndex]; // contoh: [4, 3, 2, 1] jika soal positif
+
+            // Simpan nilai berdasarkan skor yang dipilih (1–4), sesuaikan dengan mapping
             answers[currentIndex] = mapping[score - 1];
-            updateAnswerStyles();
-            if (currentIndex === misiQuestions[currentMisi].length - 1) {
-                nextBtn.innerText = "Selesaikan Kuis";
+
+            console.log(`Soal ${currentIndex + 1}, Klik ${score}, Disimpan: ${answers[currentIndex]}`);
+
+            currentIndex++;
+            if (currentIndex < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
             }
         }
+
 
         function updateAnswerStyles() {
             // Reset all button styles
