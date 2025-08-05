@@ -258,40 +258,76 @@
 
         // Skala jawaban
         const scaleLabels = [
-            "Tidak Setuju",
-            "Kurang Setuju",
-            "Setuju",
-            "Sangat Setuju"
+            "Sangat sesuai",
+            "Sesuai",
+            "Tidak Sesuai",
+            "Sangat Tidak Sesuai"
         ];
 
         // Soal untuk masing-masing ruang misi
         const misiQuestions = [
             [ // Ruang Misi 1
-                "Saya dapat mampu mengenali emosi teman sebaya dengan mudah.",
-                "Saya peduli dengan urusan yang sedang dihadapi orang lain.",
-                "Saya merasa gelisah jika mengabaikan orang lain yang sedang memiliki masalah",
+                "Saya tahu kalau teman saya sedang sedih, meskipun dia tidak bercerita.",
+                "Saya merasa tidak nyaman kalau melihat teman dimarahi orang lain.",
+                "Saya tidak peduli kalau teman sedang sedih.",
+                "Saya berusaha memahami perasaan teman ketika dia sedang marah.",
+                "Saya merasa gelisah jika mengabaikan orang lain yang sedang memiliki masalah.",
                 "Saya merasa lebih baik menyelesaikan permasalahan sendiri daripada menyelesaikan permasalahan orang lain.",
-                "Banyak teman-teman yang meminta saya untuk membantu menyelesaikan permasalahannya.",
-                "Saya ingin menolong teman yang mengalami kesulitan",
-                "Saya merasa sedih apabila tidak bisa membantu menyelesaikan permasalahan teman saya."
+                "Saya kesulitan dalam mengenali emosi teman dengan mudah.",
+                "Saya jarang menanyakan bagaimana perasaan yang sedang dirasakan oleh teman."
             ],
             [ // Ruang Misi 2
-                "Saya mampu memunculkan sikap peduli dengan teman sebaya di LPKA.",
-                "Saya tidak mengenal dekat semua teman sebaya di LPKA",
-                "Saya mengetahui hampir semua informasi teman sebaya di LPKA dengan baik.",
-                "Saya mampu merespon dengan baik pertanyaan terkait teman sebaya di LPKA",
-                "Saya berusaha menjaga hubungan baik dengan teman sebaya di LPKA",
-                "Saya selalu berusaha untuk memenuhi kewajiban dan tugas saya di LPKA",
-                "Saya sering berpikir tentang bagaimana tindakan saya terhadap teman sebaya di LPKA"
+                "Saya tahu kapan harus diam dan mendengarkan saat ada yang bicara.",
+                "Saya merasa kesulitan dalam menyesuaikan sikap saya sesuai aturan yang berlaku di LPKA Kelas 1 Blitar",
+                "Saya sering melanggar aturan walaupun tahu itu salah.",
+                "Saya hanya mengenal sedikit teman di LPKA Kelas 1 Blitar.",
+                "Saya mampu merespon dengan baik pertanyaan terkait teman di LPKA Kelas 1 Blitar.",
+                "Saya malas memenuhi kewajiban saya di LPKA Kelas 1 Blitar.",
+                "Tidak peduli siapa yang sedang berbicara, saya tetap bersikap semaunya.",
+                "Saya mengetahui hampir semua informasi terkait identitas teman di LPKA Kelas 1 Blitar dengan baik."
             ],
             [ // Ruang Misi 3
-                "Saya mampu memecahkan permainan secara bekerja sama dengan teman sebaya.",
-                "Saya dapat dengan mudah mengendalikan emosi dalam memecahkan tantangan permainan.",
-                "Saya tidak mampu berkomunikasi secara baik dengan teman sebaya.",
-                "Saya merasa mudah untuk berbicara dengan teman sebaya saya tentang hal-hal pribadi",
-                "Saya dapat mengenali perasaan teman sebaya saya hanya dari ekspresi wajah atau bahasa tubuh mereka",
-                "Saya percaya bahwa teman sebaya saya mengenal saya dengan baik",
-                "Saya dapat menyebutkan karakteristik yang dimiliki teman sebaya"
+                "Jika ada teman kesulitan, saya ingin segera menolongnya",
+                "Saya lebih mudah memecahkan masalah jika dilakukan secara bersama-sama",
+                "Saya merasa kesulitan untuk berbicara dengan teman sebaya saya tentang hal-hal pribadi",
+                "Saya hanya membantu teman apabila disuruh saja.",
+                "Saya merasa senang kalau bisa meringankan beban teman.",
+                "Saya percaya bahwa teman mengenal saya dengan baik.",
+                "Saya tidak mau membantu kalau bukan urusan saya.",
+                "Saya malas ikut kegiatan berkelompok"
+            ]
+        ];
+        // Mapping penilaian untuk setiap soal (index: [4,3,2,1] atau [1,2,3,4])
+        const misiScoring = [
+            [ // Ruang Misi 1
+                [4, 3, 2, 1], // 1
+                [4, 3, 2, 1], // 2
+                [1, 2, 3, 4], // 3
+                [4, 3, 2, 1], // 4
+                [4, 3, 2, 1], // 5
+                [1, 2, 3, 4], // 6
+                [1, 2, 3, 4], // 7
+                [1, 2, 3, 4]  // 8
+            ],
+            [ // Ruang Misi 2
+                [4, 3, 2, 1], // 1
+                [1, 2, 3, 4], // 2
+                [1, 2, 3, 4], // 3
+                [1, 2, 3, 4], // 4
+                [1, 2, 3, 4], // 5
+                [4, 3, 2, 1], // 6
+                [1, 2, 3, 4], // 7
+                [4, 3, 2, 1]  // 8
+            ],
+            [ // Ruang Misi 3
+                [4, 3, 2, 1], // 1
+                [4, 3, 2, 1], // 2
+                [1, 2, 3, 4], // 3
+                [1, 2, 3, 4], // 4
+                [4, 3, 2, 1], // 5
+                [4, 3, 2, 1], // 6
+                [1, 2, 3, 4], // 7
+                [1, 2, 3, 4]  // 8
             ]
         ];
 
@@ -330,7 +366,10 @@
         }
 
         function selectAnswer(score) {
-            answers[currentIndex] = score;
+            // Skor sesuai mapping
+            const mapping = misiScoring[currentMisi][currentIndex];
+            // score: 1-4, mapping: [4,3,2,1] atau [1,2,3,4]
+            answers[currentIndex] = mapping[score - 1];
             updateAnswerStyles();
             if (currentIndex === misiQuestions[currentMisi].length - 1) {
                 nextBtn.innerText = "Selesaikan Kuis";
