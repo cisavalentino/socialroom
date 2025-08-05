@@ -156,19 +156,19 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-3 mb-2">
                     <div class="flex flex-col items-center">
                         <span class="font-bold text-blue-700 text-base sm:text-lg">4</span>
-                        <span class="text-xs md:text-sm">Sangat Setuju</span>
+                        <span class="text-xs md:text-sm">Sangat Sesuai</span>
                     </div>
                     <div class="flex flex-col items-center">
                         <span class="font-bold text-blue-700 text-base sm:text-lg">3</span>
-                        <span class="text-xs md:text-sm">Setuju</span>
+                        <span class="text-xs md:text-sm">Sesuai</span>
                     </div>
                     <div class="flex flex-col items-center">
                         <span class="font-bold text-blue-700 text-base sm:text-lg">2</span>
-                        <span class="text-xs md:text-sm">Kurang Setuju</span>
+                        <span class="text-xs md:text-sm">Tidak Sesuai</span>
                     </div>
                     <div class="flex flex-col items-center">
                         <span class="font-bold text-blue-700 text-base sm:text-lg">1</span>
-                        <span class="text-xs md:text-sm">Tidak Setuju</span>
+                        <span class="text-xs md:text-sm">Sangat Tidak Sesuai</span>
                     </div>
                 </div>
                 <ul class="list-disc pl-4 sm:pl-5 space-y-1 mt-2">
@@ -250,11 +250,12 @@
         const resultText = document.getElementById("result-text");
         const nextBtn = document.getElementById("nextBtn");
         const answerButtons = [
-            document.getElementById("btn1"),
-            document.getElementById("btn2"),
-            document.getElementById("btn3"),
-            document.getElementById("btn4")
+            document.getElementById("btn4"), // Sangat Setuju
+            document.getElementById("btn3"), // Setuju
+            document.getElementById("btn2"), // Kurang Setuju
+            document.getElementById("btn1")  // Tidak Setuju
         ];
+
 
         // Skala jawaban
         const scaleLabels = [
