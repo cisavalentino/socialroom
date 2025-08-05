@@ -250,20 +250,10 @@
         const resultText = document.getElementById("result-text");
         const nextBtn = document.getElementById("nextBtn");
         const answerButtons = [
-            document.getElementById("btn1"), // Sangat Tidak Sesuai
-            document.getElementById("btn2"), // Tidak Sesuai
-            document.getElementById("btn3"), // Sesuai
-            document.getElementById("btn4")  // Sangat Sesuai
-        ];
-
-
-
-        // Skala jawaban
-        const scaleLabels = [
-            "Sangat sesuai",
-            "Sesuai",
-            "Tidak Sesuai",
-            "Sangat Tidak Sesuai"
+            document.getElementById("btn1"), // Tidak Setuju (1)
+            document.getElementById("btn2"), // Kurang Setuju (2)
+            document.getElementById("btn3"), // Setuju (3)
+            document.getElementById("btn4")  // Sangat Setuju (4)
         ];
 
         // Soal untuk masing-masing ruang misi
@@ -299,37 +289,39 @@
                 "Saya malas ikut kegiatan berkelompok"
             ]
         ];
-        // Mapping penilaian untuk setiap soal (index: [4,3,2,1] atau [1,2,3,4])
-        const misiScoring = [
+
+        // Pemetaan nilai untuk setiap soal berdasarkan jenis (positif/negatif)
+        // true = positif (4,3,2,1), false = negatif (1,2,3,4)
+        const questionTypes = [
             [ // Ruang Misi 1
-                [4, 3, 2, 1], // 1
-                [4, 3, 2, 1], // 2
-                [1, 2, 3, 4], // 3
-                [4, 3, 2, 1], // 4
-                [4, 3, 2, 1], // 5
-                [1, 2, 3, 4], // 6
-                [1, 2, 3, 4], // 7
-                [1, 2, 3, 4]  // 8
+                true,  // 1 - positif
+                true,  // 2 - positif
+                false, // 3 - negatif
+                true,  // 4 - positif
+                true,  // 5 - positif
+                false, // 6 - negatif
+                false, // 7 - negatif
+                false  // 8 - negatif
             ],
             [ // Ruang Misi 2
-                [4, 3, 2, 1], // 1
-                [1, 2, 3, 4], // 2
-                [1, 2, 3, 4], // 3
-                [1, 2, 3, 4], // 4
-                [1, 2, 3, 4], // 5
-                [4, 3, 2, 1], // 6
-                [1, 2, 3, 4], // 7
-                [4, 3, 2, 1]  // 8
+                true,  // 1 - positif
+                false, // 2 - negatif
+                false, // 3 - negatif
+                false, // 4 - negatif
+                true,  // 5 - positif
+                false, // 6 - negatif
+                false, // 7 - negatif
+                true   // 8 - positif
             ],
             [ // Ruang Misi 3
-                [4, 3, 2, 1], // 1
-                [4, 3, 2, 1], // 2
-                [1, 2, 3, 4], // 3
-                [1, 2, 3, 4], // 4
-                [4, 3, 2, 1], // 5
-                [4, 3, 2, 1], // 6
-                [1, 2, 3, 4], // 7
-                [1, 2, 3, 4]  // 8
+                true,  // 1 - positif
+                true,  // 2 - positif
+                false, // 3 - negatif
+                false, // 4 - negatif
+                true,  // 5 - positif
+                true,  // 6 - positif
+                false, // 7 - negatif
+                false  // 8 - negatif
             ]
         ];
 
@@ -367,16 +359,14 @@
             }
         }
 
-        function selectAnswer(score) {
-            // Simpan score (1-4) yang dipilih user
-            answers[currentIndex] = score;
+        function selectAnswer(userScore) {
+            // Simpan jawaban user (1-4)
+            answers[currentIndex] = userScore;
             updateAnswerStyles();
             if (currentIndex === misiQuestions[currentMisi].length - 1) {
                 nextBtn.innerText = "Selesaikan Kuis";
             }
         }
-
-
 
         function updateAnswerStyles() {
             // Reset all button styles
@@ -384,9 +374,9 @@
                 answerButtons[i].classList.remove("bg-blue-600", "text-white", "ring-2", "ring-blue-600");
                 answerButtons[i].classList.add("bg-white", "text-blue-800");
             }
-            // Highlight selected
-            const selectedIdx = answers[currentIndex] !== null ? answers[currentIndex] - 1 : null;
-            if (selectedIdx !== null && selectedIdx > -1) {
+            // Highlight selected (answers[currentIndex] berisi nilai 1-4)
+            if (answers[currentIndex] !== null) {
+                const selectedIdx = answers[currentIndex] - 1; // Convert to 0-3 index
                 answerButtons[selectedIdx].classList.remove("bg-white", "text-blue-800");
                 answerButtons[selectedIdx].classList.add("bg-blue-600", "text-white", "ring-2", "ring-blue-600");
             }
@@ -416,11 +406,29 @@
         function finishQuiz() {
             quizSection.classList.add("hidden");
             resultSection.classList.remove("hidden");
-            // Hitung total nilai dengan mapping
+
+            // Hitung total nilai dengan mapping yang benar
             let total = 0;
             for (let i = 0; i < answers.length; i++) {
-                total += misiScoring[currentMisi][i][answers[i] - 1];
+                const userAnswer = answers[i]; // 1-4
+                const isPositive = questionTypes[currentMisi][i];
+
+                let score;
+                if (isPositive) {
+                    // Untuk pertanyaan positif: 4=4, 3=3, 2=2, 1=1
+                    score = userAnswer;
+                } else {
+                    // Untuk pertanyaan negatif: 4=1, 3=2, 2=3, 1=4
+                    score = 5 - userAnswer;
+                }
+                total += score;
+
+                // Debug log
+                console.log(`Soal ${i + 1}: ${isPositive ? 'Positif' : 'Negatif'}, Jawaban: ${userAnswer}, Skor: ${score}`);
             }
+
+            console.log(`Total skor: ${total}`);
+
             const max = misiQuestions[currentMisi].length * 4;
             const percent = Math.round((total / max) * 100);
 
@@ -437,34 +445,20 @@
                 warna = 'red-500';
             }
 
-            // Kirim hasil ke server
-            fetch('save_quiz.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nama: username, nilai: percent, misi: currentMisi + 1 })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        resultText.innerHTML = `
-        <div class="bg-gradient-to-b from-orange-300 to-orange-500 text-white rounded-xl shadow-lg max-w-md mx-auto p-8 mb-6">
-            <div class="text-2xl font-bold mb-2">Selamat, ${username}!</div>
-            <div class="text-lg mb-4">Tingkat Social Awareness Anda: <span class='font-extrabold'>${percent}%</span></div>
-            <div class="text-5xl font-extrabold mb-2 text-${warna}">${predikat}</div>
-            <div class="w-full bg-white rounded-full h-4 mb-4">
-            <div class="h-4 rounded-full transition-all duration-700 bg-${warna}" style="width: ${percent}%"></div>
-            </div>
-            <div class="text-sm">Terima kasih telah mengikuti kuis ini.<br>Terus tingkatkan kepekaan sosialmu!</div>
-        </div>
-        <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-2 rounded-full shadow hover:bg-blue-700 transition">Kembali ke Beranda</button>
-        `;
-                    } else {
-                        resultText.innerHTML = `<div class='text-red-600 font-bold'>Gagal menyimpan hasil: ${data.message || 'Silakan coba lagi.'}</div>`;
-                    }
-                })
-                .catch((err) => {
-                    resultText.innerHTML = `<div class='text-red-600 font-bold'>Gagal menyimpan hasil. Silakan coba lagi.</div>`;
-                });
+            // Tampilkan hasil (tanpa fetch ke server untuk testing)
+            resultText.innerHTML = `
+                <div class="bg-gradient-to-b from-orange-300 to-orange-500 text-white rounded-xl shadow-lg max-w-md mx-auto p-8 mb-6">
+                    <div class="text-2xl font-bold mb-2">Selamat, ${username}!</div>
+                    <div class="text-lg mb-4">Tingkat Social Awareness Anda: <span class='font-extrabold'>${percent}%</span></div>
+                    <div class="text-5xl font-extrabold mb-2 text-${warna}">${predikat}</div>
+                    <div class="w-full bg-white rounded-full h-4 mb-4">
+                        <div class="h-4 rounded-full transition-all duration-700 bg-${warna}" style="width: ${percent}%"></div>
+                    </div>
+                    <div class="text-sm">Terima kasih telah mengikuti kuis ini.<br>Terus tingkatkan kepekaan sosialmu!</div>
+                    <div class="text-xs mt-2 opacity-75">Total Skor: ${total}/${max}</div>
+                </div>
+                <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-2 rounded-full shadow hover:bg-blue-700 transition">Kembali ke Beranda</button>
+            `;
         }
     </script>
 
