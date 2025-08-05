@@ -368,20 +368,27 @@
         }
 
         function selectAnswer(score) {
-            const mapping = misiScoring[currentIndex]; // contoh: [4, 3, 2, 1] jika soal positif
+            const mapping = misiScoring[currentIndex]; // Ambil mapping untuk soal saat ini
 
-            // Simpan nilai berdasarkan skor yang dipilih (1–4), sesuaikan dengan mapping
+            // Ambil skor dari tombol yang ditekan dan sesuaikan berdasarkan mapping
             answers[currentIndex] = mapping[score - 1];
 
-            console.log(`Soal ${currentIndex + 1}, Klik ${score}, Disimpan: ${answers[currentIndex]}`);
+            // Hapus kelas aktif dari semua tombol
+            answerButtons.forEach(button => button.classList.remove("active"));
 
-            currentIndex++;
-            if (currentIndex < questions.length) {
-                showQuestion();
-            } else {
-                showResult();
+            // Tambahkan kelas aktif ke tombol yang diklik
+            answerButtons[score - 1].classList.add("active");
+
+            // Cek apakah semua soal sudah dijawab
+            const allAnswered = answers.every(answer => answer !== null);
+            if (allAnswered) {
+                submitBtn.disabled = false;
             }
+
+            // (Opsional) Debug: cetak nilai
+            console.log(`Soal ${currentIndex + 1} | Klik skor ${score} | Disimpan nilai: ${answers[currentIndex]}`);
         }
+
 
 
         function updateAnswerStyles() {
