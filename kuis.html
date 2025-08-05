@@ -368,9 +368,8 @@
         }
 
         function selectAnswer(score) {
-            // Skor sesuai urutan tombol: btn1 = mapping[0], btn2 = mapping[1], btn3 = mapping[2], btn4 = mapping[3]
-            const mapping = misiScoring[currentMisi][currentIndex];
-            answers[currentIndex] = mapping[score - 1];
+            // Simpan score (1-4) yang dipilih user
+            answers[currentIndex] = score;
             updateAnswerStyles();
             if (currentIndex === misiQuestions[currentMisi].length - 1) {
                 nextBtn.innerText = "Selesaikan Kuis";
@@ -386,7 +385,7 @@
                 answerButtons[i].classList.add("bg-white", "text-blue-800");
             }
             // Highlight selected
-            const selectedIdx = answers[currentIndex] !== null ? misiScoring[currentMisi][currentIndex].indexOf(answers[currentIndex]) : null;
+            const selectedIdx = answers[currentIndex] !== null ? answers[currentIndex] - 1 : null;
             if (selectedIdx !== null && selectedIdx > -1) {
                 answerButtons[selectedIdx].classList.remove("bg-white", "text-blue-800");
                 answerButtons[selectedIdx].classList.add("bg-blue-600", "text-white", "ring-2", "ring-blue-600");
@@ -417,7 +416,11 @@
         function finishQuiz() {
             quizSection.classList.add("hidden");
             resultSection.classList.remove("hidden");
-            const total = answers.reduce((a, b) => a + b, 0);
+            // Hitung total nilai dengan mapping
+            let total = 0;
+            for (let i = 0; i < answers.length; i++) {
+                total += misiScoring[currentMisi][i][answers[i] - 1];
+            }
             const max = misiQuestions[currentMisi].length * 4;
             const percent = Math.round((total / max) * 100);
 
