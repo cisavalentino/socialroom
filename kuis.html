@@ -366,9 +366,9 @@
         }
 
         function selectAnswer(score) {
-            // Skor sesuai mapping, tombol 4 = mapping[0], tombol 3 = mapping[1], dst
+            // Skor sesuai mapping, tombol 4 = mapping[0], tombol 3 = mapping[1], tombol 2 = mapping[2], tombol 1 = mapping[3]
             const mapping = misiScoring[currentMisi][currentIndex];
-            answers[currentIndex] = mapping[4 - score];
+            answers[currentIndex] = mapping[score - 1];
             updateAnswerStyles();
             if (currentIndex === misiQuestions[currentMisi].length - 1) {
                 nextBtn.innerText = "Selesaikan Kuis";
