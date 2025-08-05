@@ -250,10 +250,10 @@
         const resultText = document.getElementById("result-text");
         const nextBtn = document.getElementById("nextBtn");
         const answerButtons = [
-            document.getElementById("btn1"), // Tidak Setuju
-            document.getElementById("btn2"), // Kurang Setuju
-            document.getElementById("btn3"), // Setuju
-            document.getElementById("btn4")  // Sangat Setuju
+            document.getElementById("btn1"), // Sangat Tidak Sesuai
+            document.getElementById("btn2"), // Tidak Sesuai
+            document.getElementById("btn3"), // Sesuai
+            document.getElementById("btn4")  // Sangat Sesuai
         ];
 
 
@@ -368,25 +368,13 @@
         }
 
         function selectAnswer(score) {
-            const mapping = misiScoring[currentIndex]; // Ambil mapping untuk soal saat ini
-
-            // Ambil skor dari tombol yang ditekan dan sesuaikan berdasarkan mapping
+            // Skor sesuai urutan tombol: btn1 = mapping[0], btn2 = mapping[1], btn3 = mapping[2], btn4 = mapping[3]
+            const mapping = misiScoring[currentMisi][currentIndex];
             answers[currentIndex] = mapping[score - 1];
-
-            // Hapus kelas aktif dari semua tombol
-            answerButtons.forEach(button => button.classList.remove("active"));
-
-            // Tambahkan kelas aktif ke tombol yang diklik
-            answerButtons[score - 1].classList.add("active");
-
-            // Cek apakah semua soal sudah dijawab
-            const allAnswered = answers.every(answer => answer !== null);
-            if (allAnswered) {
-                submitBtn.disabled = false;
+            updateAnswerStyles();
+            if (currentIndex === misiQuestions[currentMisi].length - 1) {
+                nextBtn.innerText = "Selesaikan Kuis";
             }
-
-            // (Opsional) Debug: cetak nilai
-            console.log(`Soal ${currentIndex + 1} | Klik skor ${score} | Disimpan nilai: ${answers[currentIndex]}`);
         }
 
 
@@ -398,10 +386,10 @@
                 answerButtons[i].classList.add("bg-white", "text-blue-800");
             }
             // Highlight selected
-            const selected = answers[currentIndex];
-            if (selected !== null) {
-                answerButtons[selected - 1].classList.remove("bg-white", "text-blue-800");
-                answerButtons[selected - 1].classList.add("bg-blue-600", "text-white", "ring-2", "ring-blue-600");
+            const selectedIdx = answers[currentIndex] !== null ? misiScoring[currentMisi][currentIndex].indexOf(answers[currentIndex]) : null;
+            if (selectedIdx !== null && selectedIdx > -1) {
+                answerButtons[selectedIdx].classList.remove("bg-white", "text-blue-800");
+                answerButtons[selectedIdx].classList.add("bg-blue-600", "text-white", "ring-2", "ring-blue-600");
             }
         }
 
