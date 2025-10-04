@@ -203,22 +203,22 @@
                 <button id="btn4" onclick="selectAnswer(4)"
                     class="bg-white text-blue-800 text-base md:text-lg font-bold py-4 px-2 rounded-lg shadow flex flex-col items-center justify-center transition-all">
                     <span class="text-lg">4</span>
-                    <span class="text-xs md:text-sm">Sangat Setuju</span>
+                    <span class="text-xs md:text-sm">Sangat Sesuai</span>
                 </button>
                 <button id="btn3" onclick="selectAnswer(3)"
                     class="bg-white text-blue-800 text-base md:text-lg font-bold py-4 px-2 rounded-lg shadow flex flex-col items-center justify-center transition-all">
                     <span class="text-lg">3</span>
-                    <span class="text-xs md:text-sm">Setuju</span>
+                    <span class="text-xs md:text-sm">Sesuai</span>
                 </button>
                 <button id="btn2" onclick="selectAnswer(2)"
                     class="bg-white text-blue-800 text-base md:text-lg font-bold py-4 px-2 rounded-lg shadow flex flex-col items-center justify-center transition-all">
                     <span class="text-lg">2</span>
-                    <span class="text-xs md:text-sm">Kurang Setuju</span>
+                    <span class="text-xs md:text-sm">Tidak Sesuai</span>
                 </button>
                 <button id="btn1" onclick="selectAnswer(1)"
                     class="bg-white text-blue-800 text-base md:text-lg font-bold py-4 px-2 rounded-lg shadow flex flex-col items-center justify-center transition-all">
                     <span class="text-lg">1</span>
-                    <span class="text-xs md:text-sm">Tidak Setuju</span>
+                    <span class="text-xs md:text-sm">Sangat Tidak Sesuai</span>
                 </button>
             </div>
         </div>
@@ -445,20 +445,36 @@
                 warna = 'red-500';
             }
 
-            // Tampilkan hasil (tanpa fetch ke server untuk testing)
-            resultText.innerHTML = `
-                <div class="bg-gradient-to-b from-orange-300 to-orange-500 text-white rounded-xl shadow-lg max-w-md mx-auto p-8 mb-6">
-                    <div class="text-2xl font-bold mb-2">Selamat, ${username}!</div>
-                    <div class="text-lg mb-4">Tingkat Social Awareness Anda: <span class='font-extrabold'>${percent}%</span></div>
-                    <div class="text-5xl font-extrabold mb-2 text-${warna}">${predikat}</div>
-                    <div class="w-full bg-white rounded-full h-4 mb-4">
-                        <div class="h-4 rounded-full transition-all duration-700 bg-${warna}" style="width: ${percent}%"></div>
-                    </div>
-                    <div class="text-sm">Terima kasih telah mengikuti kuis ini.<br>Terus tingkatkan kepekaan sosialmu!</div>
-                    <div class="text-xs mt-2 opacity-75">Total Skor: ${total}/${max}</div>
-                </div>
-                <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-2 rounded-full shadow hover:bg-blue-700 transition">Kembali ke Beranda</button>
-            `;
+
+            // Kirim hasil ke server dan tampilkan hasil
+            fetch('save_quiz.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nama: username, nilai: percent, misi: currentMisi + 1 })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        resultText.innerHTML = `
+                            <div class="bg-gradient-to-b from-orange-300 to-orange-500 text-white rounded-xl shadow-lg max-w-md mx-auto p-8 mb-6">
+                                <div class="text-2xl font-bold mb-2">Selamat, ${username}!</div>
+                                <div class="text-lg mb-4">Tingkat Social Awareness Anda: <span class='font-extrabold'>${percent}%</span></div>
+                                <div class="text-5xl font-extrabold mb-2 text-${warna}">${predikat}</div>
+                                <div class="w-full bg-white rounded-full h-4 mb-4">
+                                    <div class="h-4 rounded-full transition-all duration-700 bg-${warna}" style="width: ${percent}%"></div>
+                                </div>
+                                <div class="text-sm">Terima kasih telah mengikuti kuis ini.<br>Terus tingkatkan kepekaan sosialmu!</div>
+                                <div class="text-xs mt-2 opacity-75">Total Skor: ${total}/${max}</div>
+                            </div>
+                            <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-2 rounded-full shadow hover:bg-blue-700 transition">Kembali ke Beranda</button>
+                        `;
+                    } else {
+                        resultText.innerHTML = `<div class='text-red-600 font-bold'>Gagal menyimpan hasil: ${data.message || 'Silakan coba lagi.'}</div>`;
+                    }
+                })
+                .catch((err) => {
+                    resultText.innerHTML = `<div class='text-red-600 font-bold'>Gagal menyimpan hasil. Silakan coba lagi.</div>`;
+                });
         }
     </script>
 
